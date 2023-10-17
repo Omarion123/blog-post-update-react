@@ -3,16 +3,12 @@ import MenuImage from "../components/svgs/menu.svg";
 import XImage from "../components/svgs/x.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-// import { ReactComponent as Close } from "./icons/9110796_x_icon.svg";
-// import { Link } from "react-router-dom";
 import {
   faFacebook,
   faInstagram,
   faTwitter,
   faSearchengin,
 } from "@fortawesome/free-brands-svg-icons";
-// import { faBars } from "@fortawesome/free-solid-svg-icons";
-// import { AiOutlineClose } from "react-icons/ai";
 const Navbar = () => {
   // Step 1: Create a state variable to manage menu visibility
   const [menuOpen, setMenuOpen] = useState(false);
@@ -56,20 +52,6 @@ const Navbar = () => {
             <FontAwesomeIcon className="iconfa" icon={faInstagram} />
           </div>
         </div>
-        {/* <div className="menus">
-          <Link to="/">
-            <h2 className="home">Home</h2>
-          </Link>
-          <Link to="/aboutus">
-            <h2>About us</h2>
-          </Link>
-          <Link to="/contactus">
-            <h2>Contact us</h2>
-          </Link>
-          <Link to="/Login">
-            <h2 className="login">LOGIN</h2>
-          </Link>
-        </div> */}
         <div className="menus">
           <Link to="/" onClick={closeMenu}>
             <h2 className="home">Home</h2>
@@ -79,15 +61,6 @@ const Navbar = () => {
           </Link>
           <Link to="/contactus" onClick={closeMenu}>
             <h2>Contact us</h2>
-          </Link>
-          <Link to="/single-blog" onClick={closeMenu}>
-            <h2>Single blog</h2>
-          </Link>
-          <Link to="/dashboard" onClick={closeMenu}>
-            <h2>Dashboard</h2>
-          </Link>
-          <Link to="/addblog" onClick={closeMenu}>
-            <h2>Add item</h2>
           </Link>
           <Link to="/Login" onClick={closeMenu}>
             <h2 className="login">LOGIN</h2>

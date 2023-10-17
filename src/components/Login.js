@@ -29,7 +29,9 @@ const Login = () => {
           <Link to="/forgot-password">Forgot Password?</Link>
         </div>
         <div className="login-button">
-          <h1>Login</h1>
+          <Link to="/dashboard">
+            <h1>Login</h1>
+          </Link>
         </div>
       </div>
     </div>

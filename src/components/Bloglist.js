@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Bloglist = ({ blogs }) => {
   return (
     <>
@@ -13,7 +14,9 @@ const Bloglist = ({ blogs }) => {
           <div className="card-content">
             <p>{blog.content}</p>
           </div>
-          <div className="view-post">View post</div>
+          <div className="view-post">
+            <Link to="/single-blog">View post</Link>
+          </div>
         </div>
       ))}
     </>

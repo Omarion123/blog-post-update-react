@@ -386,6 +386,10 @@ input:focus {
   border-radius: 10px;
   transition: background-color 0.3s, transform 0.2s;
 }
+.view-post a {
+  text-decoration: none;
+  color: var(--text-color-white);
+}
 
 .view-post:hover {
   background-color: #ff9f42; /* Change the background color on hover */
@@ -671,6 +675,10 @@ input:focus {
   box-shadow: 12px 7px 13px 0px rgba(0, 0, 0, 0.75);
   transition: background 0.3s ease, transform 0.2s ease;
 }
+.login-button a {
+  text-decoration: none;
+  color: var(--text-color-white);
+}
 .login-button:hover {
   background: #ffac33; /* Change the background color on hover */
   transform: scale(1.05); /* Scale the button slightly on hover */
@@ -709,7 +717,7 @@ input:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 45px;
+  height: 80px;
   border-top-right-radius: 20px;
 }
 .author-category-date span {
@@ -746,6 +754,8 @@ input:focus {
   display: inline-flex;
   flex-direction: row;
   justify-content: flex-start;
+  font-size: 18px;
+  padding: 1rem;
 }
 .username-input input {
   width: 100%;
@@ -756,6 +766,8 @@ input:focus {
   display: inline-flex;
   flex-direction: row;
   justify-content: flex-start;
+  font-size: 18px;
+  padding: 1rem;
 }
 .comment-input input {
   width: 100%;
@@ -1084,6 +1096,8 @@ input:focus {
   /* for main */
   .container-main {
     width: 100%;
+    margin-top: 3rem;
+    padding: 1rem;
   }
   .cards {
     display: grid;
@@ -1184,6 +1198,7 @@ input:focus {
   /* for main */
   .container-main {
     width: 100%;
+    padding: 1rem;
   }
   .cards {
     display: grid;
