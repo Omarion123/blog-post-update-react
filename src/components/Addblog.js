@@ -20,10 +20,6 @@ const Addblog = () => {
           <input type="text" placeholder="Enter category here..." />
         </div>
         <div className="image-select">
-          <BsPersonBadgeFill className="icon" />
-          <input type="text" placeholder="Enter author here..." />
-        </div>
-        <div className="image-select">
           <MdSubtitles className="icon" />
           <input type="text" placeholder="Enter title here..." />
         </div>
@@ -34,11 +30,7 @@ const Addblog = () => {
         <div className="image-select">
           <CgDetailsMore className="icon" />
           {/* <input type="text-area" placeholder="Enter description..." /> */}
-          <textarea
-            id="myTextArea"
-            rows="4"
-            placeholder="Type your blog here..."
-          ></textarea>
+          <textarea rows="4" placeholder="Type your blog here..."></textarea>
         </div>
         <div className="addbtn">
           <div className="add-blog-button">

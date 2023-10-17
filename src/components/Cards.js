@@ -10,6 +10,7 @@ import Img8 from "./images/image8.jpg";
 import Img9 from "./images/image9.jpg";
 import Img10 from "./images/image10.jpg";
 import { useState } from "react";
+import Bloglist from "./Bloglist";
 const Cards = () => {
   const [blogs, setBlogs] = useState([
     {
@@ -115,21 +116,7 @@ const Cards = () => {
   ]);
   return (
     <div className="cards">
-      {blogs.map((blog) => (
-        <div className="card1" key={blog.id}>
-          <img src={blog.image} alt="image" />
-          <div className="category-date">
-            <div className="category">{blog.category}</div>
-            <div className="date">{blog.date}</div>
-          </div>
-          <div className="author">{blog.author}</div>
-          <div className="title">{blog.title}</div>
-          <div className="card-content">
-            <p>{blog.content}</p>
-          </div>
-          <div className="view-post">View post</div>
-        </div>
-      ))}
+      <Bloglist blogs={blogs} />
     </div>
   );
 };

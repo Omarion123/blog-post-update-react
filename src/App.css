@@ -263,6 +263,7 @@ input:focus {
   grid-template-rows: repeat(1, 1fr);
   grid-template-columns: repeat(3, 1fr);
   place-items: center;
+  margin-top: 2rem;
   /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
 }
 /* .card1 {
@@ -295,7 +296,7 @@ input:focus {
 
 .card1:hover {
   transform: scale(1.05); /* Scale the card slightly on hover */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add a shadow on hover */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add a shadow on hover */
 }
 .card1 img {
   width: 100%;
@@ -320,14 +321,24 @@ input:focus {
   color: var(--text-color-white);
   border-radius: 10px;
   width: 161px;
+  height: 40px;
   text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 .date {
   background-color: var(--card-date-color);
   color: var(--text-color-black);
   width: 114px;
+  height: 40px;
   text-align: center;
   border-radius: 10px;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
 }
 .author {
   margin-top: 15px;
