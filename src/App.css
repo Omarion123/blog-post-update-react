@@ -151,6 +151,7 @@ input:focus {
 }
 .menus a {
   color: var(--text-color-white);
+  position: relative;
   margin-bottom: 1rem;
   text-decoration: none;
   margin-left: 10px;
@@ -159,6 +160,15 @@ input:focus {
 .menus a:hover {
   transition: 0.3s;
   color: var(--primary-color);
+}
+.menus a:hover::after {
+  content: "";
+  width: 30%;
+  height: 2px;
+  background-color: var(--secondary-color);
+  position: absolute;
+  bottom: -4px;
+  left: 40px;
 }
 .menus .home {
   color: var(--primary-color);
@@ -209,6 +219,43 @@ input:focus {
   height: 100%;
   padding-top: 5rem;
   margin-bottom: 1rem;
+}
+.hero-section {
+  width: 100%;
+  height: 700px;
+  background: url(./components/images/image6.jpg);
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color-white);
+}
+.hero-section H1 {
+  font-size: 3rem;
+}
+.hero-section-button {
+  width: 13rem;
+  height: 5rem;
+  border: 2px solid var(--primary-color);
+  color: var(--text-color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.hero-section-button a {
+  text-decoration: none;
+  color: var(--text-color-white);
+}
+.hero-section-button:hover {
+  transition: 0.3s ease-in-out;
+  background-color: var(--primary-color);
+  color: var(--text-color-black);
+  border: 1px solid var(--secondary-color);
 }
 .cards {
   display: grid;
@@ -785,6 +832,14 @@ input:focus {
   cursor: pointer;
   text-decoration: none;
 }
+.add-blog a {
+  color: var(--text-color-black);
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 .add-blog link {
   text-decoration: none;
 }
@@ -877,12 +932,16 @@ input:focus {
   color: var(--icon-edit);
 }
 .items-action .icon:nth-child(1):hover {
+  transition: 0.3s;
+  transform: scale(1.2);
   color: var(--icon-delete);
 }
 .items-action .icon:nth-child(2) {
   color: var(--icon-delete);
 }
 .items-action .icon:nth-child(2):hover {
+  transition: 0.3s;
+  transform: scale(1.2);
   color: var(--icon-edit);
 }
 /* Add blog codes here */
@@ -1078,6 +1137,11 @@ input:focus {
   }
   .icons-side {
     display: block;
+  }
+  /* For hero section */
+
+  .hero-section H1 {
+    font-size: 1rem;
   }
   .show-media {
     width: 100%;
