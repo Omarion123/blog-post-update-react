@@ -16,20 +16,41 @@ import { faL } from "@fortawesome/free-solid-svg-icons";
 const Cards = () => {
   const [blogs, setBlogs] = useState(null);
   const [isPending, setIspending] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(() => {
     setTimeout(() => {
       fetch("http://localhost:3000/blogs")
         .then((res) => {
+          if (!res.ok) {
+            throw Error("Could not fetch the resources");
+          }
+          console.log(res);
           return res.json();
         })
         .then((data) => {
           setBlogs(data);
           setIspending(false);
+          setError(null);
+        })
+        .catch((err) => {
+          setIspending(false);
+          setError(err.message);
         });
     }, 3000);
   }, []);
   return (
     <div className="cards">
+      {error && (
+        <Animated
+          animationIn="bounceInLeft"
+          animationOut="fadeOut"
+          isVisible={true}
+        >
+          <div>
+            <h2>{error}</h2>
+          </div>
+        </Animated>
+      )}
       {isPending && (
         <Animated
           animationIn="bounceInLeft"
