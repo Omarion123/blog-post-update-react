@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 import { Animated } from "react-animated-css";
 // import Img1 from "./images/image1.jpeg";
 // import Img2 from "./images/image2.jpeg";
@@ -10,34 +10,14 @@ import { Animated } from "react-animated-css";
 // import Img8 from "./images/image8.jpg";
 // import Img9 from "./images/image9.jpg";
 // import Img10 from "./images/image10.jpg";
-import { useState } from "react";
+// import { useState } from "react";
 import Bloglist from "./Bloglist";
-import { faL } from "@fortawesome/free-solid-svg-icons";
+import useFetch from "../useFetch";
+// import { faL } from "@fortawesome/free-solid-svg-icons";
 const Cards = () => {
-  const [blogs, setBlogs] = useState(null);
-  const [isPending, setIspending] = useState(true);
-  const [error, setError] = useState(null);
-  useEffect(() => {
-    setTimeout(() => {
-      fetch("http://localhost:3000/blogs")
-        .then((res) => {
-          if (!res.ok) {
-            throw Error("Could not fetch the resources");
-          }
-          console.log(res);
-          return res.json();
-        })
-        .then((data) => {
-          setBlogs(data);
-          setIspending(false);
-          setError(null);
-        })
-        .catch((err) => {
-          setIspending(false);
-          setError(err.message);
-        });
-    }, 3000);
-  }, []);
+  const url = "http://localhost:3000/blogs";
+  const { data: blogs, isPending, error } = useFetch(url);
+
   return (
     <div className="cards">
       {error && (
