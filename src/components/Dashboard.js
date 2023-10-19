@@ -40,12 +40,12 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <Link to="/addblog">
-        <div className="add-blog">
+      <div className="add-blog">
+        <Link to="/addblog">
           <h2>Add item</h2>
           <MdAddCircleOutline className="icon" />
-        </div>
-      </Link>
+        </Link>
+      </div>
       <div className="dashboard-items">
         <div className="dashboard-items-header">
           <div>

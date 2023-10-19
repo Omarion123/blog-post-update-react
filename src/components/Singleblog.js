@@ -1,88 +1,92 @@
 import React from "react";
 import Img1 from "./images/image1.jpeg";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import useFetch from "./useFetch";
 const Singleblog = () => {
+  const { id } = useParams();
+  const {
+    data: blog,
+    isPending,
+    error,
+  } = useFetch("http://localhost:3000/blogs/" + id);
   return (
     <div className="singleblog-container">
-      <div className="blog-title">
-        <h1>Pro evultion soccer</h1>
-      </div>
-      <div className="image-title">
-        <img src={Img1} alt="Ghost of tsushima" />
-      </div>
-      <div className="single-description">
-        <div className="author-category-date">
-          <div className="author-single">
-            Author: <span>Karake Omar</span>
+      {isPending && <div>Loading....</div>}
+      {error && <div>{error}</div>}
+      {blog && (
+        <>
+          <div className="blog-title">
+            <h1>{blog.title}</h1>
           </div>
-          <div className="category-single">
-            Category: <span>Gaming, business</span>
+          <div className="image-title">
+            <img src={blog.image} alt="Ghost of tsushima" />
           </div>
-          <div className="date-single">
-            Date: <span>October 9, 2023</span>
+          <div className="single-description">
+            <div className="author-category-date">
+              <div className="author-single">
+                Author: <span>{blog.author}</span>
+              </div>
+              <div className="category-single">
+                Category: <span>{blog.category}</span>
+              </div>
+              <div className="date-single">
+                Date: <span>October 9, 2023</span>
+              </div>
+            </div>
+            <div className="description">
+              <p>{blog.content}</p>
+            </div>
           </div>
-        </div>
-        <div className="description">
-          <p>
-            eFootball Pro Evolution Soccer (eFootball PES), known as eFootball
-            World Soccer Winning Eleven (eFootball WE)[a] in Japan, is a series
-            of association football simulation video games developed by Konami
-            Digital Entertainment Co., Ltd. and published by Konami. The series
-            consists of eighteen main installments and several spin-offs,
-            including the mobile game Pro Evolution Soccer Club Manager. Listed
-            as one of the best-selling video game franchises, the series has
-            sold 111 million copies worldwide, in addition to 400 million mobile
-            downloads, December 2020.[1]
-          </p>
-        </div>
-      </div>
-      <h2 className="comment-head">Comments</h2>
-      <div className="comment-side">
-        <div className="username-input">
-          Name: <input type="text" />
-        </div>
-        <div className="comment-input">
-          Comments: <input type="text" />
-        </div>
-        <div className="comment-button">Comment</div>
-      </div>
-      <div className="first-comments">
-        <div className="side-one">
-          <img src={Img1} alt="avatar" />
-        </div>
-        <div className="side-two">
-          <div className="username-comment">
-            Name: <span>Omarion</span>
+          <h2 className="comment-head">Comments</h2>
+          <div className="comment-side">
+            <div className="username-input">
+              Name: <input type="text" />
+            </div>
+            <div className="comment-input">
+              Comments: <input type="text" />
+            </div>
+            <div className="comment-button">Comment</div>
           </div>
-          <div className="username-comment">
-            Commented:{" "}
-            <span>
-              eFootball Pro Evolution Soccer (eFootball PES), known as eFootball
-              World Soccer Winning Eleven (eFootball WE)[a] in Japan, is a
-              series of association football simulation video games developed by
-              Konami Digital Entertainment Co.
-            </span>
+          <div className="first-comments">
+            <div className="side-one">
+              <img src={Img1} alt="avatar" />
+            </div>
+            <div className="side-two">
+              <div className="username-comment">
+                Name: <span>Omarion</span>
+              </div>
+              <div className="username-comment">
+                Commented:{" "}
+                <span>
+                  eFootball Pro Evolution Soccer (eFootball PES), known as
+                  eFootball World Soccer Winning Eleven (eFootball WE)[a] in
+                  Japan, is a series of association football simulation video
+                  games developed by Konami Digital Entertainment Co.
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div className="first-comments">
-        <div className="side-one">
-          <img src={Img1} alt="avatar" />
-        </div>
-        <div className="side-two">
-          <div className="username-comment">
-            Name: <span>Omarion</span>
+          <div className="first-comments">
+            <div className="side-one">
+              <img src={Img1} alt="avatar" />
+            </div>
+            <div className="side-two">
+              <div className="username-comment">
+                Name: <span>Omarion</span>
+              </div>
+              <div className="username-comment">
+                Commented:{" "}
+                <span>
+                  eFootball Pro Evolution Soccer (eFootball PES), known as
+                  eFootball World Soccer Winning Eleven (eFootball WE)[a] in
+                  Japan, is a series of association football simulation video
+                  games developed by Konami Digital Entertainment Co.
+                </span>
+              </div>
+            </div>
           </div>
-          <div className="username-comment">
-            Commented:{" "}
-            <span>
-              eFootball Pro Evolution Soccer (eFootball PES), known as eFootball
-              World Soccer Winning Eleven (eFootball WE)[a] in Japan, is a
-              series of association football simulation video games developed by
-              Konami Digital Entertainment Co.
-            </span>
-          </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };

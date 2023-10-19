@@ -75,16 +75,17 @@ input:focus {
 .search-container {
   display: flex;
   align-items: center;
-  background: var(--primary-color);
+  background: transparent;
   border: 1px solid #ccc;
   border-radius: 30px;
   padding: 5px 15px;
   width: 250px; /* You can adjust the width as needed */
   /* height: 30px; */
+  margin-left: 1rem;
 }
 
 .search-container .icon {
-  color: var(--text-color-white);
+  color: var(--primary-color);
   margin-right: 10px; /* Add some space between the icon and the input */
 }
 
@@ -92,13 +93,17 @@ input:focus {
   font-size: 20px;
   border: none;
   background: transparent; /* Remove the background color to make it transparent */
-  color: var(--text-color-white);
+  color: var(--primary-color);
   width: 100%; /* Take the full width available in the container */
   outline: none; /* Remove the input outline on focus */
+}
+.search-container input:focus {
+  color: var(--primary-color);
 }
 
 input[type="text"] {
   border: none;
+  color: var(--primary-color);
 }
 
 input:focus {
@@ -151,6 +156,7 @@ input:focus {
 }
 .menus a {
   color: var(--text-color-white);
+  position: relative;
   margin-bottom: 1rem;
   text-decoration: none;
   margin-left: 10px;
@@ -159,6 +165,15 @@ input:focus {
 .menus a:hover {
   transition: 0.3s;
   color: var(--primary-color);
+}
+.menus a:hover::after {
+  content: "";
+  width: 30%;
+  height: 2px;
+  background-color: var(--secondary-color);
+  position: absolute;
+  bottom: -4px;
+  left: 40px;
 }
 .menus .home {
   color: var(--primary-color);
@@ -183,6 +198,7 @@ input:focus {
   display: inline-flex;
   flex-direction: column;
   cursor: pointer;
+  margin-right: 1rem;
 }
 
 .menu-click img {
@@ -210,12 +226,50 @@ input:focus {
   padding-top: 5rem;
   margin-bottom: 1rem;
 }
+.hero-section {
+  width: 100%;
+  height: 700px;
+  background: url(./components/images/image6.jpg);
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color-white);
+}
+.hero-section H1 {
+  font-size: 3rem;
+}
+.hero-section-button {
+  width: 13rem;
+  height: 5rem;
+  border: 2px solid var(--primary-color);
+  color: var(--text-color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.hero-section-button a {
+  text-decoration: none;
+  color: var(--text-color-white);
+}
+.hero-section-button:hover {
+  transition: 0.3s ease-in-out;
+  background-color: var(--primary-color);
+  color: var(--text-color-black);
+  border: 1px solid var(--secondary-color);
+}
 .cards {
   display: grid;
   gap: 1.5rem;
   grid-template-rows: repeat(1, 1fr);
   grid-template-columns: repeat(3, 1fr);
   place-items: center;
+  margin-top: 2rem;
   /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
 }
 /* .card1 {
@@ -231,11 +285,11 @@ input:focus {
   cursor: pointer;
   border-radius: 20px;
 } */
-.card1 {
+.card1 a {
   background-color: var(--secondary-color);
   width: 430px;
   height: 600px;
-  border: 2px solid var(--card-title-name);
+  border: 2px solid var(--text-color-black);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -243,12 +297,17 @@ input:focus {
   padding: 1rem;
   cursor: pointer;
   border-radius: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add a transition to transform and box-shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+.card1 {
+  text-decoration: none;
+  border-radius: 20px;
 }
 
 .card1:hover {
   transform: scale(1.05); /* Scale the card slightly on hover */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add a shadow on hover */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add a shadow on hover */
 }
 .card1 img {
   width: 100%;
@@ -273,14 +332,24 @@ input:focus {
   color: var(--text-color-white);
   border-radius: 10px;
   width: 161px;
+  height: 40px;
   text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 .date {
   background-color: var(--card-date-color);
   color: var(--text-color-black);
   width: 114px;
+  height: 40px;
   text-align: center;
   border-radius: 10px;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
 }
 .author {
   margin-top: 15px;
@@ -327,6 +396,12 @@ input:focus {
   cursor: pointer;
   border-radius: 10px;
   transition: background-color 0.3s, transform 0.2s;
+}
+.view-post a {
+  text-decoration: none;
+  color: var(--text-color-white);
+  height: 20px;
+  color: black;
 }
 
 .view-post:hover {
@@ -613,6 +688,10 @@ input:focus {
   box-shadow: 12px 7px 13px 0px rgba(0, 0, 0, 0.75);
   transition: background 0.3s ease, transform 0.2s ease;
 }
+.login-button a {
+  text-decoration: none;
+  color: var(--text-color-white);
+}
 .login-button:hover {
   background: #ffac33; /* Change the background color on hover */
   transform: scale(1.05); /* Scale the button slightly on hover */
@@ -651,7 +730,7 @@ input:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 45px;
+  height: 80px;
   border-top-right-radius: 20px;
 }
 .author-category-date span {
@@ -688,6 +767,8 @@ input:focus {
   display: inline-flex;
   flex-direction: row;
   justify-content: flex-start;
+  font-size: 18px;
+  padding: 1rem;
 }
 .username-input input {
   width: 100%;
@@ -698,6 +779,8 @@ input:focus {
   display: inline-flex;
   flex-direction: row;
   justify-content: flex-start;
+  font-size: 18px;
+  padding: 1rem;
 }
 .comment-input input {
   width: 100%;
@@ -784,6 +867,14 @@ input:focus {
   transition: background 0.3s ease, transform 0.2s ease;
   cursor: pointer;
   text-decoration: none;
+}
+.add-blog a {
+  color: var(--text-color-black);
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .add-blog link {
   text-decoration: none;
@@ -877,12 +968,16 @@ input:focus {
   color: var(--icon-edit);
 }
 .items-action .icon:nth-child(1):hover {
+  transition: 0.3s;
+  transform: scale(1.2);
   color: var(--icon-delete);
 }
 .items-action .icon:nth-child(2) {
   color: var(--icon-delete);
 }
 .items-action .icon:nth-child(2):hover {
+  transition: 0.3s;
+  transform: scale(1.2);
   color: var(--icon-edit);
 }
 /* Add blog codes here */
@@ -1014,6 +1109,8 @@ input:focus {
   /* for main */
   .container-main {
     width: 100%;
+    margin-top: 3rem;
+    padding: 1rem;
   }
   .cards {
     display: grid;
@@ -1079,6 +1176,11 @@ input:focus {
   .icons-side {
     display: block;
   }
+  /* For hero section */
+
+  .hero-section H1 {
+    font-size: 1rem;
+  }
   .show-media {
     width: 100%;
     display: flex;
@@ -1109,6 +1211,7 @@ input:focus {
   /* for main */
   .container-main {
     width: 100%;
+    padding: 1rem;
   }
   .cards {
     display: grid;

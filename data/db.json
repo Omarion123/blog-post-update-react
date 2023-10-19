@@ -1,0 +1,26 @@
+{
+    "blogs":[
+        {
+            "image": "https://cdn.britannica.com/15/152315-050-226AA671/twin-towers-skyline-Lower-Manhattan-World-Trade-September-11-2001.jpg",
+            "category": "Gaming, business",
+            "date": "15, October 2023",
+            "author": "Karake Omar",
+            "title": "What&rsquo;s new with gaming",
+            "heading": "Gaming experience",
+            "content":
+              "The series consists of eighteen main installments and several spin-offs , including the mobile game Pro Evolution Soccer Club Manager. Listed as one of the best-selling video game franchise",
+            "id": 1
+          },
+          {
+            "image": "https://cdn.britannica.com/15/152315-050-226AA671/twin-towers-skyline-Lower-Manhattan-World-Trade-September-11-2001.jpg",
+            "category": "Technology, Gadgets",
+            "date": "20, October 2023",
+            "author": "Sophia Johnson",
+            "title": "The Latest Tech Gadgets",
+            "heading": "Gaming experience",
+            "content":
+              "Discover the most cutting-edge technology gadgets, from smartwatches to augmented reality headsets, in this comprehensive review.",
+            "id": 2
+          }
+    ]
+}

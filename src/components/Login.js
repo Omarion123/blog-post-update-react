@@ -17,19 +17,21 @@ const Login = () => {
         <div className="login-username">
           <input
             type="text"
-            placeholder="Username..."
+            placeholder="Enter username..."
             className="username-focus"
           />
         </div>
         <div className="login-password">
-          <input type="password" placeholder="Password..." />
+          <input type="password" placeholder="Enter password..." />
           <BiSolidHide className="login-password-hide-icon" />
         </div>
         <div className="forgot-password">
           <Link to="/forgot-password">Forgot Password?</Link>
         </div>
         <div className="login-button">
-          <h1>Login</h1>
+          <Link to="/dashboard">
+            <h1>Login</h1>
+          </Link>
         </div>
       </div>
     </div>
