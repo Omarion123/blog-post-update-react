@@ -2,8 +2,8 @@ import React from "react";
 const Aboutus = () => {
   return (
     <div className="aboutus-container">
-      <section class="about-us">
-        <div class="about-content">
+      <section className="about-us">
+        <div className="about-content">
           <h2>About Us</h2>
           <p>
             Welcome to <span>OMY-BLOGS</span>, your ultimate destination for all

@@ -12,7 +12,6 @@ import {
 const Navbar = () => {
   // Step 1: Create a state variable to manage menu visibility
   const [menuOpen, setMenuOpen] = useState(false);
-  console.log(menuOpen);
 
   // Step 2: Define the handleClick function to toggle menu visibility
   const handleClick = () => {
@@ -25,7 +24,7 @@ const Navbar = () => {
     <div className="container">
       <div className="search-container">
         <FontAwesomeIcon icon={faSearchengin} className="icon" />
-        <input type="text" placeholder="Search..." style={{ color: "white" }} />
+        <input type="text" placeholder="Search..." />
       </div>
       <h2 className="nameOfBanner">OMY-BLOGS</h2>
       <div className="icons">

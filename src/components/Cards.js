@@ -12,7 +12,7 @@ import { Animated } from "react-animated-css";
 // import Img10 from "./images/image10.jpg";
 // import { useState } from "react";
 import Bloglist from "./Bloglist";
-import useFetch from "../useFetch";
+import useFetch from "./useFetch";
 // import { faL } from "@fortawesome/free-solid-svg-icons";
 const Cards = () => {
   const url = "http://localhost:3000/blogs";

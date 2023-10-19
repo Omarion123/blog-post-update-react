@@ -45,7 +45,7 @@ function App() {
                 <Route path="/forgot-password">
                   <Forgotpassword />
                 </Route>
-                <Route path="/single-blog">
+                <Route path="/blogs/:id">
                   <Singleblog />
                 </Route>
                 <Route path="/dashboard">

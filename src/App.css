@@ -75,16 +75,17 @@ input:focus {
 .search-container {
   display: flex;
   align-items: center;
-  background: var(--primary-color);
+  background: transparent;
   border: 1px solid #ccc;
   border-radius: 30px;
   padding: 5px 15px;
   width: 250px; /* You can adjust the width as needed */
   /* height: 30px; */
+  margin-left: 1rem;
 }
 
 .search-container .icon {
-  color: var(--text-color-white);
+  color: var(--primary-color);
   margin-right: 10px; /* Add some space between the icon and the input */
 }
 
@@ -92,13 +93,17 @@ input:focus {
   font-size: 20px;
   border: none;
   background: transparent; /* Remove the background color to make it transparent */
-  color: var(--text-color-white);
+  color: var(--primary-color);
   width: 100%; /* Take the full width available in the container */
   outline: none; /* Remove the input outline on focus */
+}
+.search-container input:focus {
+  color: var(--primary-color);
 }
 
 input[type="text"] {
   border: none;
+  color: var(--primary-color);
 }
 
 input:focus {
@@ -193,6 +198,7 @@ input:focus {
   display: inline-flex;
   flex-direction: column;
   cursor: pointer;
+  margin-right: 1rem;
 }
 
 .menu-click img {
@@ -279,11 +285,11 @@ input:focus {
   cursor: pointer;
   border-radius: 20px;
 } */
-.card1 {
+.card1 a {
   background-color: var(--secondary-color);
   width: 430px;
   height: 600px;
-  border: 2px solid var(--card-title-name);
+  border: 2px solid var(--text-color-black);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -291,7 +297,12 @@ input:focus {
   padding: 1rem;
   cursor: pointer;
   border-radius: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add a transition to transform and box-shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+.card1 {
+  text-decoration: none;
+  border-radius: 20px;
 }
 
 .card1:hover {
@@ -389,6 +400,8 @@ input:focus {
 .view-post a {
   text-decoration: none;
   color: var(--text-color-white);
+  height: 20px;
+  color: black;
 }
 
 .view-post:hover {
