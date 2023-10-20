@@ -285,7 +285,7 @@ input:focus {
   cursor: pointer;
   border-radius: 20px;
 } */
-.card1 a {
+.card1 {
   background-color: var(--secondary-color);
   width: 430px;
   height: 600px;
@@ -372,18 +372,6 @@ input:focus {
   text-align: center;
   font-size: 18px;
 }
-/* .view-post {
-  margin-top: 15px;
-  width: 119px;
-  height: 34px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--primary-color);
-  color: var(--text-color-black);
-  cursor: pointer;
-  border-radius: 10px;
-} */
 .view-post {
   margin-top: 15px;
   width: 119px;
@@ -391,7 +379,7 @@ input:focus {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background-color: transparent;
+  background-color: var(--primary-color);
   color: var(--text-color-black);
   cursor: pointer;
   border-radius: 10px;

@@ -15,6 +15,7 @@ import Forgotpassword from "./components/Forgotpassword";
 import Singleblog from "./components/Singleblog";
 import Dashboard from "./components/Dashboard";
 import Addblog from "./components/Addblog";
+import Loginmodel from "./components/Loginmodel";
 
 function App() {
   return (
@@ -39,6 +40,10 @@ function App() {
                 <Route path="/login">
                   <Login />
                 </Route>
+                {/* test */}
+                {/* <Route path="/login">
+                <Loginmodel />
+                </Route> */}
                 <Route path="/register">
                   <Register />
                 </Route>
