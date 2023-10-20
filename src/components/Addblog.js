@@ -10,15 +10,23 @@ const Addblog = () => {
   const [image, setImage] = useState(null);
   const [category, setCategory] = useState("");
   const [author, setAuthor] = useState("");
-  const date = new Date().toISOString().slice(0, 10);
+  const createdAt = new Date().toISOString().slice(0, 10);
 
   const [title, setTitle] = useState("");
   const [heading, setHeading] = useState("");
-  const [content, setContent] = useState("");
+  const [description, setDescription] = useState("");
   const [ispending, setIspending] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const blog = { image, category, author, date, title, heading, content };
+    const blog = {
+      image,
+      category,
+      author,
+      createdAt,
+      title,
+      heading,
+      description,
+    };
     setIspending(true);
     fetch("http://localhost:7000/blogs", {
       method: "POST",
@@ -32,7 +40,7 @@ const Addblog = () => {
       setAuthor("");
       setTitle("");
       setHeading("");
-      setContent("");
+      setDescription("");
     });
   };
   return (
@@ -93,8 +101,8 @@ const Addblog = () => {
             <textarea
               rows="4"
               required
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
           <div className="addbtn">

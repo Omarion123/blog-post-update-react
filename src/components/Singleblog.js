@@ -3,12 +3,12 @@ import Img1 from "./images/image1.jpeg";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import useFetch from "./useFetch";
 const Singleblog = () => {
-  const { id } = useParams();
+  const { _id } = useParams();
   const {
     data: blog,
     isPending,
     error,
-  } = useFetch("http://localhost:7000/blogs/" + id);
+  } = useFetch(`https://lastlast.onrender.com/api/post/one/${_id}`);
   return (
     <div className="singleblog-container">
       {isPending && <div>Loading....</div>}

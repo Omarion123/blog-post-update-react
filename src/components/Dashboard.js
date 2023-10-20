@@ -10,7 +10,7 @@ import useFetch from "./useFetch";
 import { Animated } from "react-animated-css";
 
 const Dashboard = () => {
-  const url = "http://localhost:7000/blogs";
+  const url = "https://lastlast.onrender.com/api/post/posts";
   const { data: blogs, isPending, error } = useFetch(url);
   return (
     <div className="dashboard-container">
@@ -96,7 +96,9 @@ const Dashboard = () => {
                   <p>{blog.title}</p>
                 </div>
                 <div className="items-description">
-                  {blog && blog.content ? blog.content.substring(0, 100) : ""}
+                  {blog && blog.description
+                    ? blog.description.substring(0, 100)
+                    : ""}
                   ...
                 </div>
                 <div className="items-action">

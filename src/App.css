@@ -391,7 +391,7 @@ input:focus {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--primary-color);
+  background-color: transparent;
   color: var(--text-color-black);
   cursor: pointer;
   border-radius: 10px;
@@ -404,10 +404,11 @@ input:focus {
   color: black;
 }
 
-.view-post:hover {
-  background-color: #ff9f42; /* Change the background color on hover */
-  transform: scale(1.05); /* Scale the element slightly on hover */
-}
+/* .view-post:hover {
+  border-radius: 10px;
+  background-color: #ff9f42; 
+  transform: scale(1.05);
+} */
 /* Footer */
 .footer {
   height: 61px;

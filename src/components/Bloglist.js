@@ -4,7 +4,7 @@ const Bloglist = ({ blogs }) => {
     <>
       {blogs.map((blog) => (
         <div className="card1" key={blog.id}>
-          <Link to={`/blogs/${blog.id}`}>
+          <Link to={`/blogs/${blog._id}`}>
             <img src={blog.image} alt="image" />
             <div className="category-date">
               <div className="category">{blog.category}</div>
@@ -21,7 +21,7 @@ const Bloglist = ({ blogs }) => {
               </p>
             </div>
             <div className="view-post">
-              <Link to={`/blogs/${blog.id}`}>View post</Link>
+              <Link to={`/blogs/${blog._id}`}>View post</Link>
             </div>
           </Link>
         </div>
