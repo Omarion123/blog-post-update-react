@@ -8,12 +8,17 @@ const Bloglist = ({ blogs }) => {
             <img src={blog.image} alt="image" />
             <div className="category-date">
               <div className="category">{blog.category}</div>
-              <div className="date">{blog.date}</div>
+              <div className="date">{blog.createdAt}</div>
             </div>
             <div className="author">{blog.author}</div>
             <div className="title">{blog.title}</div>
             <div className="card-content">
-              <p>{blog.content}</p>
+              <p>
+                {blog && blog.description
+                  ? blog.description.substring(0, 100)
+                  : ""}
+                ...
+              </p>
             </div>
             <div className="view-post">
               <Link to={`/blogs/${blog.id}`}>View post</Link>

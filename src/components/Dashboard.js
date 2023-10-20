@@ -10,7 +10,7 @@ import useFetch from "./useFetch";
 import { Animated } from "react-animated-css";
 
 const Dashboard = () => {
-  const url = "http://localhost:3000/blogs";
+  const url = "http://localhost:7000/blogs";
   const { data: blogs, isPending, error } = useFetch(url);
   return (
     <div className="dashboard-container">
@@ -27,7 +27,7 @@ const Dashboard = () => {
         </div>
         <div className="grid1">
           <div className="left-side">
-            <h3>Category</h3>
+            <h3>Categorys</h3>
             <h1>4</h1>
           </div>
           <div className="right-side">
@@ -96,7 +96,8 @@ const Dashboard = () => {
                   <p>{blog.title}</p>
                 </div>
                 <div className="items-description">
-                  <p>{blog.content}</p>
+                  {blog && blog.content ? blog.content.substring(0, 100) : ""}
+                  ...
                 </div>
                 <div className="items-action">
                   <AiFillEdit className="icon" />

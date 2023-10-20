@@ -1321,12 +1321,5 @@ input:focus {
   }
   .items-title p {
     text-decoration: underline;
-    font-size: 18px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .items-description p {
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 }

@@ -4,7 +4,7 @@ import { Animated } from "react-animated-css";
 import Bloglist from "./Bloglist";
 import useFetch from "./useFetch";
 const Cards = () => {
-  const url = "http://localhost:3000/blogs";
+  const url = "https://lastlast.onrender.com/api/post/posts";
   const { data: blogs, isPending, error } = useFetch(url);
 
   return (

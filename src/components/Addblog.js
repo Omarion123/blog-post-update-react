@@ -20,7 +20,7 @@ const Addblog = () => {
     e.preventDefault();
     const blog = { image, category, author, date, title, heading, content };
     setIspending(true);
-    fetch("http://localhost:3000/blogs", {
+    fetch("http://localhost:7000/blogs", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(blog),
