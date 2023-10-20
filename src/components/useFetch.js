@@ -1,35 +1,34 @@
 import { useState, useEffect } from "react";
+
 const useFetch = (url) => {
   const [data, setData] = useState(null);
   const [isPending, setIspending] = useState(true);
   const [error, setError] = useState(null);
+
   useEffect(() => {
-    const abortCont = new AbortController();
-    setTimeout(() => {
-      fetch(url, { signal: abortCont.signal })
-        .then((res) => {
-          if (!res.ok) {
-            throw Error("Could not fetch the resources");
-          }
-          return res.json();
-        })
-        .then((data) => {
-          setData(data.data);
-          console.log(data.data);
-          setIspending(false);
-          setError(null);
-        })
-        .catch((err) => {
-          if (err === "AbortError") {
-            console.log("Fetch aborted");
-          } else {
-            setIspending(false);
-            setError(err.message);
-          }
-        });
-    }, 1000);
-    return () => abortCont.abort();
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error("Could not fetch the resources, check the endpoints");
+        }
+
+        const responseData = await response.json();
+        setData(responseData.data);
+        console.log(responseData.data);
+        setIspending(false);
+        setError(null);
+      } catch (err) {
+        setIspending(false);
+        setError(err.message);
+      }
+    };
+
+    fetchData(); // Fetch data immediately
   }, [url]);
+
   return { data, isPending, error };
 };
+
 export default useFetch;

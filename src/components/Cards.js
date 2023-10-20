@@ -5,6 +5,7 @@ import Bloglist from "./Bloglist";
 import useFetch from "./useFetch";
 const Cards = () => {
   const url = "https://lastlast.onrender.com/api/post/posts";
+  // const url = "https://blogapi-uvr7.onrender.com/api/v1/blog/getAll";
   const { data: blogs, isPending, error } = useFetch(url);
 
   return (
