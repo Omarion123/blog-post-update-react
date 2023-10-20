@@ -1,26 +1,54 @@
 {
-    "blogs":[
-        {
-            "image": "https://cdn.britannica.com/15/152315-050-226AA671/twin-towers-skyline-Lower-Manhattan-World-Trade-September-11-2001.jpg",
-            "category": "Gaming, business",
-            "date": "15, October 2023",
-            "author": "Karake Omar",
-            "title": "What&rsquo;s new with gaming",
-            "heading": "Gaming experience",
-            "content":
-              "The series consists of eighteen main installments and several spin-offs , including the mobile game Pro Evolution Soccer Club Manager. Listed as one of the best-selling video game franchise",
-            "id": 1
-          },
-          {
-            "image": "https://cdn.britannica.com/15/152315-050-226AA671/twin-towers-skyline-Lower-Manhattan-World-Trade-September-11-2001.jpg",
-            "category": "Technology, Gadgets",
-            "date": "20, October 2023",
-            "author": "Sophia Johnson",
-            "title": "The Latest Tech Gadgets",
-            "heading": "Gaming experience",
-            "content":
-              "Discover the most cutting-edge technology gadgets, from smartwatches to augmented reality headsets, in this comprehensive review.",
-            "id": 2
-          }
-    ]
+  "statusbar": "You Made It",
+  "message": "All Blogs Are here:",
+  "data": [
+      {
+          "_id": "6530148a4b48d7d839a52956",
+          "PostImage": "https://res.cloudinary.com/dvl09mzee/image/upload/v1697716123/cfgfxaiosaglgjrv50rr.jpg",
+          "PostTitle": "Physical Exercises",
+          "PostContent": "Your muscular strength can make a big difference. Strong muscles help you stay independent and make everyday activities feel easier, like getting up from a chair, climbing stairs, and carrying groceries. Keeping your muscles strong can help with your balance and prevent falls and fall-related injuries. You are less likely to fall when your leg and hip muscles are strong. Some people call using weight to improve your muscle strength “strength training” or “resistance training.”  The Mental Health Benefits of Exercise and Physical Activity infographic. Click to open webpage Read and share this infographic and help spread the word about the everyday benefits of exercise and physical activity. Some people choose to use weights to help improve their strength. If you do, start by using light weights at first, then gradually add more. Other people use resistance bands, stretchy elastic bands that come in varying strengths. If you are a beginner, try exercising without the band or use a light band until you are comfortable. Add a band or move on to a stronger band (or more weight) when you can do two sets of 10 to 15 repetitions easily. Try to do strength exercises for all of your major muscle groups at least 2 days per week, but don’t exercise the same muscle group on any 2 days in a row. Below are a few examples of strength exercises.",
+          "creator": "John Peter",
+          "creatorprofile": "https://res.cloudinary.com/dxitrjcef/image/upload/v1696870762/kazdcipwzwu0ycprzlg6.jpg",
+          "PostedDate": "2023-10-18T17:23:22.893Z",
+          "comments": [],
+          "__v": 0,
+          "comment": []
+      },
+      {
+          "_id": "65302efc5b8cf218670b01af",
+          "PostImage": "https://res.cloudinary.com/dvl09mzee/image/upload/v1697656571/b4cfbkdotnku9y1rtffe.jpg",
+          "PostTitle": "Learn to Play an Instrument",
+          "PostContent": "Whether you want to join your school's band, learning to play an instrument is a rewarding and stimulating activity...Whether you want to join your school's band, learning to play an instrument is a rewarding and stimulating activity...Whether you want to join your school's band, learning to play an instrument is a rewarding and stimulating activity...Whether you want to join your school's band, learning to play an instrument is a rewarding and stimulating activity...Whether you want to join your school's band, learning to play an instrument is a rewarding and stimulating activity...Whether you want to join your school's band, learning to play an instrument is a rewarding and stimulating activity...Whether you want to join your school's band, learning to play an instrument is a rewarding and stimulating activity...Whether you want to join your school's band, learning to play an instrument is a rewarding and stimulating activity...Whether you want to join your school's band, learning to play an instrument is a rewarding and stimulating activity...Whether you want to join your school's band, learning to play an instrument is a rewarding and stimulating activity...Whether you want to join your school's band, learning to play an instrument is a rewarding and stimulating activity...Whether you want to join your school's band, learning to play an instrument is a rewarding and stimulating activity...Whether you want to join your school's band, learning to play an instrument is a rewarding and stimulating activity...Whether you want to join your school's band, learning to play an instrument is a rewarding and stimulating activity...Whether you want to join your school's band, learning to play an instrument is a rewarding and stimulating activity...Whether you want to join your school's band, learning to play an instrument is a rewarding and stimulating activity...",
+          "creator": "John Peter",
+          "creatorprofile": "https://res.cloudinary.com/dxitrjcef/image/upload/v1696870762/kazdcipwzwu0ycprzlg6.jpg",
+          "PostedDate": "2023-10-18T19:16:12.855Z",
+          "comments": [],
+          "__v": 0,
+          "comment": []
+      },
+      {
+          "_id": "653031db5b8cf218670b01b6",
+          "PostImage": "https://res.cloudinary.com/dvl09mzee/image/upload/v1697657307/yvvbyjuf0nnakpsh25il.jpg",
+          "PostTitle": "Healthy & Tasty",
+          "PostContent": "You've gotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurt...",
+          "creator": "John Peter",
+          "creatorprofile": "https://res.cloudinary.com/dxitrjcef/image/upload/v1696870762/kazdcipwzwu0ycprzlg6.jpg",
+          "PostedDate": "2023-10-18T19:28:27.821Z",
+          "comments": [],
+          "__v": 0,
+          "comment": []
+      },
+      {
+          "_id": "653033385b8cf218670b01bc",
+          "PostImage": "https://res.cloudinary.com/dvl09mzee/image/upload/v1697657655/ueivgnzppgtuigkozl72.jpg",
+          "PostTitle": "House update",
+          "PostContent": "You've gotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurtgotta dance like there's nobody watching, love like you'll never be hurt...",
+          "creator": "Eric",
+          "creatorprofile": "https://res.cloudinary.com/dxitrjcef/image/upload/v1696870762/kazdcipwzwu0ycprzlg6.jpg",
+          "PostedDate": "2023-10-18T19:34:16.711Z",
+          "comments": [],
+          "__v": 0,
+          "comment": []
+      }
+  ]
 }
