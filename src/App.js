@@ -16,6 +16,7 @@ import Singleblog from "./components/Singleblog";
 import Dashboard from "./components/Dashboard";
 import Addblog from "./components/Addblog";
 import Loginmodel from "./components/Loginmodel";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Router>
           <div className="header">
             <Navbar />
+            <Toaster position="top-center" />
           </div>
           <div className="main others-main">
             <div className="container-main">
@@ -41,9 +43,9 @@ function App() {
                   <Login />
                 </Route>
                 {/* test */}
-                {/* <Route path="/login">
-                <Loginmodel />
-                </Route> */}
+                <Route path="/loginapi">
+                  <Loginmodel />
+                </Route>
                 <Route path="/register">
                   <Register />
                 </Route>

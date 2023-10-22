@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ImAttachment } from "react-icons/im";
 import { MdSubtitles } from "react-icons/md";
 import { BiSolidCategoryAlt } from "react-icons/bi";
@@ -6,7 +6,16 @@ import { FaHeading } from "react-icons/fa";
 import { CgDetailsMore } from "react-icons/cg";
 import { BsPersonBadgeFill } from "react-icons/bs";
 import { IoIosAdd } from "react-icons/io";
+
+import { useHistory } from "react-router-dom";
+
 const Addblog = () => {
+  const history = useHistory();
+
+  useEffect(() => {
+    let email = sessionStorage.getItem("email");
+    if (email === "" || email === null) history.push("/");
+  }, []);
   const [image, setImage] = useState(null);
   const [category, setCategory] = useState("");
   const [author, setAuthor] = useState("");

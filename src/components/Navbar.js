@@ -10,7 +10,16 @@ import {
   faSearchengin,
 } from "@fortawesome/free-brands-svg-icons";
 import Login from "./Login";
+import { useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import Toast from "react-hot-toast";
+
 const Navbar = () => {
+  const location = useLocation();
+  const history = useHistory();
+
+  const isDashboardPage = location.pathname === "/dashboard";
+  const isAddBlogPage = location.pathname === "/addblog";
   // Step 1: Create a state variable to manage menu visibility
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -54,36 +63,74 @@ const Navbar = () => {
               <FontAwesomeIcon className="iconfa" icon={faInstagram} />
             </div>
           </div>
-          <div className="menus">
-            <Link to="/" onClick={closeMenu}>
-              <h2 className="home">Home</h2>
-            </Link>
-            <Link to="/aboutus" onClick={closeMenu}>
-              <h2>About us</h2>
-            </Link>
-            <Link to="/contactus" onClick={closeMenu}>
-              <h2>Contact us</h2>
-            </Link>
-            {/* <Link to="/Login" onClick={closeMenu}> */}
-            {/* <Link
-              to=""
-              onClick={() => {
-                setModalOpen(true);
-                closeMenu();
-              }}
-            >
-              <h2 className="login">LOGIN</h2>
-            </Link> */}
-            <button
-              className="login-btn login-nav"
-              onClick={() => {
-                setModalOpen(true);
-                closeMenu();
-              }}
-            >
-              Login
-            </button>
-          </div>
+
+          {
+            // !isDashboardPage && (
+            !(isDashboardPage || isAddBlogPage) && (
+              <div className="menus second-menu">
+                <Link to="/" onClick={closeMenu}>
+                  <h2 className="home">Home</h2>
+                </Link>
+                <Link to="/aboutus" onClick={closeMenu}>
+                  <h2>About us</h2>
+                </Link>
+                <Link to="/contactus" onClick={closeMenu}>
+                  <h2>Contact us</h2>
+                </Link>
+                <button
+                  className="login-btn login-nav"
+                  onClick={() => {
+                    setModalOpen(true);
+                    closeMenu();
+                  }}
+                >
+                  Login
+                </button>
+              </div>
+            )
+          }
+          {isAddBlogPage && (
+            <div className="menus second-menu">
+              <Link to="/dashboard" onClick={closeMenu}>
+                <h2>Dashboard</h2>
+              </Link>
+              <Link to="/addblog" onClick={closeMenu}>
+                <h2>Add blog</h2>
+              </Link>
+              <button
+                className="login-btn login-nav"
+                onClick={() => {
+                  closeMenu();
+                  history.push("/");
+                  sessionStorage.clear();
+                  Toast.success("Logged out successfully");
+                }}
+              >
+                Logout
+              </button>
+            </div>
+          )}
+          {isDashboardPage && (
+            <div className="menus second-menu">
+              <Link to="/dashboard" onClick={closeMenu}>
+                <h2>Dashboard</h2>
+              </Link>
+              <Link to="/addblog" onClick={closeMenu}>
+                <h2>Add blog</h2>
+              </Link>
+              <button
+                className="login-btn login-nav"
+                onClick={() => {
+                  closeMenu();
+                  history.push("/");
+                  sessionStorage.clear();
+                  Toast.success("Logged out successfully");
+                }}
+              >
+                Logout
+              </button>
+            </div>
+          )}
         </div>
       </div>
       {modalOpen && <Login setOpenModal={setModalOpen} />}

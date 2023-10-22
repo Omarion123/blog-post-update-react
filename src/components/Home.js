@@ -8,7 +8,7 @@ const Home = () => {
       <div className="hero-section">
         <h1>Welcome to OMY-BLOGS</h1>
         <div className="hero-section-button">
-          <Link to="/login">
+          <Link to="/aboutus">
             <h2>Learn more --&gt;</h2>
           </Link>
         </div>
