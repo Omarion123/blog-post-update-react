@@ -31,9 +31,11 @@ const Navbar = () => {
   const closeMenu = () => {
     setMenuOpen(!menuOpen);
   };
+  const [isLoginClicked, setIsLoginClicked] = useState(false);
   return (
     <>
-      <div className="container">
+      {/* <div className="container"> */}
+      <div className={`container ${isLoginClicked ? "login-clicked" : ""}`}>
         <div className="search-container">
           <FontAwesomeIcon icon={faSearchengin} className="icon" />
           <input type="text" placeholder="Search..." />
@@ -82,6 +84,7 @@ const Navbar = () => {
                   onClick={() => {
                     setModalOpen(true);
                     closeMenu();
+                    setIsLoginClicked(true);
                   }}
                 >
                   Login
@@ -133,7 +136,12 @@ const Navbar = () => {
           )}
         </div>
       </div>
-      {modalOpen && <Login setOpenModal={setModalOpen} />}
+      {modalOpen && (
+        <Login
+          setOpenModal={setModalOpen}
+          setIsLoginClicked={setIsLoginClicked}
+        />
+      )}
     </>
   );
 };

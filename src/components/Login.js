@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import { BiSolidHide } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 import Toast from "react-hot-toast";
+import { Animated } from "react-animated-css";
 
-const Login = ({ setOpenModal }) => {
+const Login = ({ setOpenModal, setIsLoginClicked }) => {
   const history = useHistory();
   const [loginActive, setLoginActive] = useState(true);
   const [registerActive, setRegisterActive] = useState(false);
@@ -46,6 +47,7 @@ const Login = ({ setOpenModal }) => {
           history.push("/dashboard");
           sessionStorage.setItem("email", email);
           setOpenModal(false);
+          setIsLoginClicked(false);
           setIspending(false);
         } else {
           // Handle login failure, e.g., display an error message to the user.
@@ -103,14 +105,17 @@ const Login = ({ setOpenModal }) => {
                       </button>
                     </span>
                   </p>
-                  <button
-                    className="cancelBtn"
-                    onClick={() => {
-                      setOpenModal(false);
-                    }}
-                  >
-                    X
-                  </button>
+                  <Animated animationIn="headShake" animationOut="fadeOut">
+                    <button
+                      className="cancelBtn"
+                      onClick={() => {
+                        setOpenModal(false);
+                        setIsLoginClicked(false);
+                      }}
+                    >
+                      X
+                    </button>
+                  </Animated>
                 </div>
                 <div className="login-username">
                   <input
