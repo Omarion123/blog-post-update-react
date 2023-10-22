@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { BiSolidHide } from "react-icons/bi";
+// import useFetch from "./useFetch";
 const Login = ({ setOpenModal }) => {
   const [registerActive, setRegisterActive] = useState(false);
   const [loginActive, setLoginActive] = useState(true);
