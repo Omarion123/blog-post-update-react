@@ -28,15 +28,17 @@ const Addblog = () => {
   const [ispending, setIspending] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const blog = {
-      image,
-      category,
-      // author,
-      createdAt,
-      title,
-      header: heading,
-      description,
-    };
+
+    const formData = new FormData();
+
+    // Append your form fields to the FormData object
+    formData.append("image", image); // Append the image
+    formData.append("category", category);
+    formData.append("createdAt", createdAt);
+    formData.append("title", title);
+    formData.append("header", heading);
+    formData.append("description", description);
+
     setIspending(true);
 
     // Retrieve the token from localStorage
@@ -46,23 +48,22 @@ const Addblog = () => {
 
     // Check if the token is available
     if (token) {
+      // No need to set Content-Type explicitly; FormData sets it automatically
       // Create headers with the token
       const headers = {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       };
 
-      // Make the fetch request with the headers
+      // Make the fetch request with the headers and FormData
       fetch("https://lastlast.onrender.com/api/post/create/", {
         method: "POST",
         headers: headers,
-        body: JSON.stringify(blog),
+        body: formData, // Use FormData to send the data
       })
         .then((response) => {
           if (response.ok) {
-            // setAuthor("");
             setTitle("");
-            setImage("");
+            setImage(null);
             setCategory("");
             setHeading("");
             setDescription("");
