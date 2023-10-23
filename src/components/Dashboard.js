@@ -15,8 +15,6 @@ const Dashboard = () => {
   useEffect(() => {
     let email = sessionStorage.getItem("email");
     let role = sessionStorage.getItem("role");
-
-    // if (email === "" || email === null) history.push("/");
     if (email === "" || (email === null && role !== "admin")) history.push("/");
   }, []);
   const url = "https://lastlast.onrender.com/api/post/posts";
