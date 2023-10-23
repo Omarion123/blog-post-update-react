@@ -40,6 +40,7 @@ const Login = ({ setOpenModal, setIsLoginClicked }) => {
           const responseData = await response.json();
           // Assuming the response includes a token, you can save it to a secure location, such as localStorage.
           localStorage.setItem("token", responseData.token);
+          localStorage.setItem("role", responseData.data.role);
           // Redirect to a new page or perform any other action for a successful login.
           setEmail("");
           setPassword("");

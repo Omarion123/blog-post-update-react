@@ -127,6 +127,7 @@ const Navbar = () => {
                   closeMenu();
                   history.push("/");
                   sessionStorage.clear();
+                  localStorage.removeItem("role");
                   Toast.success("Logged out successfully");
                 }}
               >

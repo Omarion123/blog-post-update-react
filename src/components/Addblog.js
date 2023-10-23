@@ -14,7 +14,8 @@ const Addblog = () => {
 
   useEffect(() => {
     let email = sessionStorage.getItem("email");
-    if (email === "" || email === null) history.push("/");
+    let role = sessionStorage.getItem("role");
+    if (email === "" || (email === null && role !== "admin")) history.push("/");
   }, []);
   const [image, setImage] = useState(null);
   console.log(image);
