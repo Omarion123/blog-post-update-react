@@ -18,7 +18,7 @@ const Addblog = () => {
   }, []);
   const [image, setImage] = useState(null);
   const [category, setCategory] = useState("");
-  const [author, setAuthor] = useState("");
+  // const [author, setAuthor] = useState("");
   const createdAt = new Date().toISOString().slice(0, 10);
 
   const [title, setTitle] = useState("");
@@ -30,28 +30,63 @@ const Addblog = () => {
     const blog = {
       image,
       category,
-      author,
+      // author,
       createdAt,
       title,
-      heading,
+      header: heading,
       description,
     };
     setIspending(true);
-    fetch("http://localhost:7000/blogs", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(blog),
-    }).then(() => {
-      setIspending(false);
-      console.log("blog added");
-      alert("Blog added successfully");
-      setCategory("");
-      setAuthor("");
-      setTitle("");
-      setHeading("");
-      setDescription("");
-    });
+
+    // Retrieve the token from localStorage
+    const token = localStorage.getItem("token");
+
+    console.log("token", token);
+
+    // Check if the token is available
+    if (token) {
+      // Create headers with the token
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+
+      // Make the fetch request with the headers
+      fetch("https://lastlast.onrender.com/api/post/create/", {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(blog),
+      })
+        .then((response) => {
+          if (response.ok) {
+            // setAuthor("");
+            setTitle("");
+            setImage("");
+            setCategory("");
+            setHeading("");
+            setDescription("");
+            setIspending(false);
+            console.log("blog added");
+            alert("Blog added successfully");
+            // Request was successful
+            return response.json();
+          } else {
+            // Handle error
+            setIspending(false);
+            console.error("Request failed with status:", response.status);
+            // You can also handle specific error codes here
+          }
+        })
+        .catch((error) => {
+          // Handle fetch errors
+          setIspending(false);
+          console.error("Fetch error:", error);
+        });
+    } else {
+      console.error("Token not found in localStorage. Please log in.");
+    }
   };
+
   return (
     <div className="addblog">
       <form onSubmit={handleSubmit}>
@@ -77,7 +112,7 @@ const Addblog = () => {
               onChange={(e) => setCategory(e.target.value)}
             />
           </div>
-          <div className="image-select">
+          {/* <div className="image-select">
             <BsPersonBadgeFill className="icon" />
             <input
               type="text"
@@ -85,7 +120,7 @@ const Addblog = () => {
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
             />
-          </div>
+          </div> */}
           <div className="image-select">
             <MdSubtitles className="icon" />
             <input

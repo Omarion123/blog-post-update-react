@@ -46,6 +46,7 @@ const Login = ({ setOpenModal, setIsLoginClicked }) => {
           Toast.success("Login successful");
           history.push("/dashboard");
           sessionStorage.setItem("email", email);
+          sessionStorage.setItem("password", password);
           setOpenModal(false);
           setIsLoginClicked(false);
           setIspending(false);
