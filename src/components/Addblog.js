@@ -17,6 +17,7 @@ const Addblog = () => {
     if (email === "" || email === null) history.push("/");
   }, []);
   const [image, setImage] = useState(null);
+  console.log(image);
   const [category, setCategory] = useState("");
   // const [author, setAuthor] = useState("");
   const createdAt = new Date().toISOString().slice(0, 10);
@@ -98,8 +99,9 @@ const Addblog = () => {
               type="file"
               required
               placeholder="Insert image..."
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
+              // value={image}
+              // onChange={(e) => setImage(e.target.value)}
+              onChange={(e) => setImage(e.target.files[0])}
               className="file"
             />
           </div>
