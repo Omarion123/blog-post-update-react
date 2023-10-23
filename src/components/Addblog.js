@@ -64,6 +64,7 @@ const Addblog = () => {
       })
         .then((response) => {
           if (response.ok) {
+            setImage(null);
             setTitle("");
             setImage(null);
             setCategory("");

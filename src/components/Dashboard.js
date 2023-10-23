@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import useFetch from "./useFetch";
 import { Animated } from "react-animated-css";
 import { useHistory } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
   const history = useHistory();
@@ -22,6 +23,38 @@ const Dashboard = () => {
   const uniqueCategories = blogs
     ? Array.from(new Set(blogs.map((blog) => blog.category))).length
     : 0;
+  // const handleDelete = (id) => {
+  //   console.log("deleted");
+  //   console.log(id);
+  // };
+  const handleDelete = async (id) => {
+    try {
+      // Send a DELETE request to the API endpoint with the id as a parameter
+      const response = await fetch(
+        `https://lastlast.onrender.com/api/post/delete/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`, // Include your authorization header
+          },
+        }
+      );
+
+      if (response.ok) {
+        // Handle a successful deletion
+        toast.success("Post deleted successfully");
+        // You can also perform additional actions here, such as updating the UI
+      } else {
+        // Handle the case where the deletion request was not successful
+        toast.error("Failed to delete the post");
+      }
+    } catch (error) {
+      // Handle any fetch errors
+      console.error("Fetch error:", error);
+      toast.error("Fetch error:", error);
+    }
+  };
+
   return (
     <div className="dashboard-container">
       <h3 className="dash-head">Dashboard</h3>
@@ -102,7 +135,7 @@ const Dashboard = () => {
         {blogs && (
           <>
             {blogs.map((blog) => (
-              <div className="items1" key={blog.id}>
+              <div className="items1" key={blog._id}>
                 {/* <Link to={`/blogs/${blog.id}`}> */}
                 <div className="items-title">
                   <p>{blog.title}</p>
@@ -115,7 +148,10 @@ const Dashboard = () => {
                 </div>
                 <div className="items-action">
                   <AiFillEdit className="icon" />
-                  <MdDelete className="icon" />
+                  <MdDelete
+                    className="icon"
+                    onClick={() => handleDelete(blog._id)}
+                  />
                 </div>
                 {/* </Link> */}
               </div>
