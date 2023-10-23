@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BsPostcardHeart } from "react-icons/bs";
 import { BiCategoryAlt } from "react-icons/bi";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { MdAddCircleOutline } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import useFetch from "./useFetch";
 import { Animated } from "react-animated-css";
@@ -12,6 +13,7 @@ import { useHistory } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const Dashboard = () => {
+  const [ispending, setIspending] = useState(false);
   const history = useHistory();
   useEffect(() => {
     let email = sessionStorage.getItem("email");
@@ -43,15 +45,18 @@ const Dashboard = () => {
       if (response.ok) {
         // Handle a successful deletion
         toast.success("Post deleted successfully");
+        setIspending(false);
         // You can also perform additional actions here, such as updating the UI
       } else {
         // Handle the case where the deletion request was not successful
         toast.error("Failed to delete the post");
+        setIspending(false);
       }
     } catch (error) {
       // Handle any fetch errors
       console.error("Fetch error:", error);
       toast.error("Fetch error:", error);
+      setIspending(false);
     }
   };
 
@@ -148,10 +153,16 @@ const Dashboard = () => {
                 </div>
                 <div className="items-action">
                   <AiFillEdit className="icon" />
-                  <MdDelete
-                    className="icon"
-                    onClick={() => handleDelete(blog._id)}
-                  />
+                  {!isPending && (
+                    <MdDelete
+                      className="icon"
+                      onClick={() => {
+                        handleDelete(blog._id);
+                        setIspending(true);
+                      }}
+                    />
+                  )}
+                  {ispending && <AiOutlineLoading3Quarters className="icon" />}
                 </div>
                 {/* </Link> */}
               </div>
