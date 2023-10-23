@@ -152,7 +152,9 @@ const Dashboard = () => {
                   ...
                 </div>
                 <div className="items-action">
-                  <AiFillEdit className="icon" />
+                  <Link to={`/update/${blog._id}`}>
+                    <AiFillEdit className="icon" />
+                  </Link>
                   {!isPending && (
                     <MdDelete
                       className="icon"

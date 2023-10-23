@@ -17,6 +17,7 @@ import Dashboard from "./components/Dashboard";
 import Addblog from "./components/Addblog";
 import Loginmodel from "./components/Loginmodel";
 import { Toaster } from "react-hot-toast";
+import Update from "./components/Update";
 
 function App() {
   return (
@@ -60,6 +61,9 @@ function App() {
                 </Route>
                 <Route path="/addblog">
                   <Addblog />
+                </Route>
+                <Route path="/update/:_id">
+                  <Update />
                 </Route>
               </Switch>
             </div>

@@ -1222,6 +1222,49 @@ input:focus {
   background: #ffac33; /* Change the background color on hover */
   transform: scale(1.2); /* Scale the button slightly on hover */
 }
+/* update css */
+
+.update form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Style for the labels */
+.update label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Style for the inputs */
+.update input[type="text"],
+.update input[type="image"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Style for the button */
+.update button[type="submit"] {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Hover effect for the button */
+.update button[type="submit"]:hover {
+  background-color: #0056b3;
+}
 /* Media queries */
 @media screen and (min-width: 1100px) {
   .side-nav {
