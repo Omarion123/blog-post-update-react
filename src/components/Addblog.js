@@ -6,6 +6,7 @@ import { FaHeading } from "react-icons/fa";
 import { CgDetailsMore } from "react-icons/cg";
 import { BsPersonBadgeFill } from "react-icons/bs";
 import { IoIosAdd } from "react-icons/io";
+import toast from "react-hot-toast";
 
 import { useHistory } from "react-router-dom";
 
@@ -70,23 +71,25 @@ const Addblog = () => {
             setDescription("");
             setIspending(false);
             console.log("blog added");
-            alert("Blog added successfully");
+            toast.success("Blog added successfully");
             // Request was successful
             return response.json();
           } else {
             // Handle error
             setIspending(false);
             console.error("Request failed with status:", response.status);
+            toast.error("Request failed with status:", response.status);
             // You can also handle specific error codes here
           }
         })
         .catch((error) => {
           // Handle fetch errors
           setIspending(false);
-          console.error("Fetch error:", error);
+          toast.error("Fetch error:", error);
         });
     } else {
       console.error("Token not found in localStorage. Please log in.");
+      toast.error("Token not found in localStorage. Please log in.");
     }
   };
 
