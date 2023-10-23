@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsPostcardHeart } from "react-icons/bs";
 import { BiCategoryAlt } from "react-icons/bi";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
@@ -8,10 +8,19 @@ import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import useFetch from "./useFetch";
 import { Animated } from "react-animated-css";
+import { useHistory } from "react-router-dom";
 
 const Dashboard = () => {
+  const history = useHistory();
+  useEffect(() => {
+    let email = sessionStorage.getItem("email");
+    if (email === "" || email === null) history.push("/");
+  }, []);
   const url = "https://lastlast.onrender.com/api/post/posts";
   const { data: blogs, isPending, error } = useFetch(url);
+  const uniqueCategories = blogs
+    ? Array.from(new Set(blogs.map((blog) => blog.category))).length
+    : 0;
   return (
     <div className="dashboard-container">
       <h3 className="dash-head">Dashboard</h3>
@@ -19,7 +28,8 @@ const Dashboard = () => {
         <div className="grid1">
           <div className="left-side">
             <h3>Post</h3>
-            <h1>64</h1>
+            {/* <h1>64</h1> */}
+            {blogs && <h1>{blogs.length}</h1>}
           </div>
           <div className="right-side">
             <BsPostcardHeart className="icon" />
@@ -28,7 +38,8 @@ const Dashboard = () => {
         <div className="grid1">
           <div className="left-side">
             <h3>Categorys</h3>
-            <h1>4</h1>
+            {/* <h1>4</h1> */}
+            {blogs && <h1>{uniqueCategories}</h1>}
           </div>
           <div className="right-side">
             <BiCategoryAlt className="icon" />
