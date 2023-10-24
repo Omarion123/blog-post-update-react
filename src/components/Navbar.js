@@ -67,7 +67,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          {!(isDashboardPage || isAddBlogPage || isUpdate) && (
+          {!(isDashboardPage || isAddBlogPage) && (
             <div className="menus second-menu">
               <Link to="/" onClick={closeMenu}>
                 <h2 className="home">Home</h2>
@@ -105,6 +105,7 @@ const Navbar = () => {
                   closeMenu();
                   history.push("/");
                   sessionStorage.clear();
+                  localStorage.clear();
                   Toast.success("Logged out successfully");
                 }}
               >
@@ -126,7 +127,7 @@ const Navbar = () => {
                   closeMenu();
                   history.push("/");
                   sessionStorage.clear();
-                  localStorage.removeItem("role");
+                  localStorage.clear();
                   Toast.success("Logged out successfully");
                 }}
               >
@@ -147,6 +148,7 @@ const Navbar = () => {
                 onClick={() => {
                   closeMenu();
                   history.push("/");
+                  localStorage.clear();
                   sessionStorage.clear();
                   Toast.success("Logged out successfully");
                 }}
