@@ -15,6 +15,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);
+  const [postIdToDelete, setPostIdToDelete] = useState(null);
   // const [ispendingDelete, setLoading] = useState(false);
   const history = useHistory();
   useEffect(() => {
@@ -94,6 +95,8 @@ const Dashboard = () => {
   // };
   const handleDelete = async (id) => {
     try {
+      setPostIdToDelete(id); // Set the post ID that's being deleted
+
       // Send a DELETE request to the API endpoint with the id as a parameter
       const response = await fetch(
         `https://lastlast.onrender.com/api/post/delete/${id}`,
@@ -108,19 +111,18 @@ const Dashboard = () => {
       if (response.ok) {
         // Handle a successful deletion
         toast.success("Post deleted successfully");
-        setLoading(false);
         fetchData();
-        // You can also perform additional actions here, such as updating the UI
+        setPostIdToDelete(null); // Reset the post ID after deletion
       } else {
         // Handle the case where the deletion request was not successful
         toast.error("Failed to delete the post");
-        setLoading(false);
+        setPostIdToDelete(null); // Reset the post ID in case of an error
       }
     } catch (error) {
       // Handle any fetch errors
       console.error("Fetch error:", error);
       toast.error("Fetch error:", error);
-      setLoading(false);
+      setPostIdToDelete(null); // Reset the post ID in case of an error
     }
   };
 
@@ -228,7 +230,7 @@ const Dashboard = () => {
                       }}
                     />
                   )}
-                  {loading && (
+                  {loading && postIdToDelete === blog._id && (
                     <ClipLoader color={"#f79918"} loading={loading} size={50} />
                   )}
                 </div>
