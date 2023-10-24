@@ -907,6 +907,7 @@ input:focus {
   align-items: center;
   border: 1px solid var(--side-nav-color);
   border-radius: 10px;
+  height: 5rem;
 }
 .first-comments img {
   width: 54px;
@@ -957,6 +958,14 @@ input:focus {
   background: #ffac33; /* Change the background color on hover */
   transform: scale(1.05); /* Scale the button slightly on hover */
 }
+.side-one {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 10%;
+  /* Optionally, you can set a maximum width for side-one to prevent it from becoming too small */
+  max-width: 10%;
+}
 .side-two {
   margin-left: 1rem;
   display: inline-flex;
@@ -966,7 +975,9 @@ input:focus {
 }
 .side-two {
   color: var(--primary-color);
-  margin-right: 37rem;
+  flex: 90%;
+  /* Optionally, you can set a maximum width for side-one to prevent it from becoming too small */
+  max-width: 90%;
 }
 .side-two span {
   color: var(--text-color-black);
