@@ -20,7 +20,8 @@ const Navbar = () => {
 
   const isDashboardPage = location.pathname === "/dashboard";
   const isAddBlogPage = location.pathname === "/addblog";
-  const isUpdate = location.pathname === "/update/:_id";
+  // const isUpdate = location.pathname === "/update/:_id";
+  const isUpdate = location.pathname.startsWith("/update/");
   // Step 1: Create a state variable to manage menu visibility
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -67,7 +68,8 @@ const Navbar = () => {
             </div>
           </div>
 
-          {!(isDashboardPage || isAddBlogPage) && (
+          {!isDashboardPage && !isAddBlogPage && !isUpdate && (
+            // {!(isDashboardPage || isAddBlogPage || isUpdate) && (
             <div className="menus second-menu">
               <Link to="/" onClick={closeMenu}>
                 <h2 className="home">Home</h2>
