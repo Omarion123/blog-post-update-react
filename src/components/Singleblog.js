@@ -53,16 +53,10 @@ const Singleblog = () => {
             </div>
             <div className="side-two">
               <div className="username-comment">
-                Name: <span>Omarion</span>
+                Name: <span>{blog.comments[0].user.fname}</span>
               </div>
               <div className="username-comment">
-                Commented:{" "}
-                <span>
-                  eFootball Pro Evolution Soccer (eFootball PES), known as
-                  eFootball World Soccer Winning Eleven (eFootball WE)[a] in
-                  Japan, is a series of association football simulation video
-                  games developed by Konami Digital Entertainment Co.
-                </span>
+                Commented: <span>{blog.comments[0].commentBody}</span>
               </div>
             </div>
           </div>
