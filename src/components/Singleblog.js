@@ -47,7 +47,7 @@ const Singleblog = () => {
             </div>
             <div className="comment-button">Comment</div>
           </div>
-          <div className="first-comments">
+          {/* <div className="first-comments">
             <div className="side-one">
               <img src={Img1} alt="avatar" />
             </div>
@@ -59,7 +59,39 @@ const Singleblog = () => {
                 Commented: <span>{blog.comments[0].commentBody}</span>
               </div>
             </div>
-          </div>
+          </div> */}
+        </>
+      )}
+      {blog && (
+        <>
+          {/* <div className="first-comments">
+            <div className="side-one">
+              <img src={Img1} alt="avatar" />
+            </div>
+            <div className="side-two">
+              <div className="username-comment">
+                Name: <span>{blog.comments[0].user.fname}</span>
+              </div>
+              <div className="username-comment">
+                Commented: <span>{blog.comments[0].commentBody}</span>
+              </div>
+            </div>
+          </div> */}
+          {blog.comments.map((comment, index) => (
+            <div key={index} className="first-comments">
+              <div className="side-one">
+                <img src={Img1} alt="avatar" />
+              </div>
+              <div className="side-two">
+                <div className="username-comment">
+                  Name: <span>{comment.user.fname}</span>
+                </div>
+                <div className="username-comment">
+                  Commented: <span>{comment.commentBody}</span>
+                </div>
+              </div>
+            </div>
+          ))}
         </>
       )}
     </div>

@@ -966,6 +966,7 @@ input:focus {
 }
 .side-two {
   color: var(--primary-color);
+  margin-right: 37rem;
 }
 .side-two span {
   color: var(--text-color-black);
