@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const Dashboard = () => {
-  const [ispending, setIspending] = useState(false);
+  const [ispendingDelete, setIspendingDelete] = useState(false);
   const history = useHistory();
   useEffect(() => {
     let email = sessionStorage.getItem("email");
@@ -23,8 +23,66 @@ const Dashboard = () => {
       history.push("/");
     }
   }, []);
+  // -------------------------------------------------------------------
   const url = "https://lastlast.onrender.com/api/post/posts";
-  const { data: blogs, isPending, error } = useFetch(url);
+  // const { data: blogs, isPending, error } = useFetch(url);
+  // -------------------------------------------------------------------
+  // ----------------------
+  // const [blogs, setBlogs] = useState([]);
+  // const [isPending, setIspending] = useState(true);
+  // const [error, setError] = useState(null);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(url);
+
+  //       if (!response.ok) {
+  //         throw new Error("Could not fetch the resources, check the endpoints");
+  //       }
+
+  //       const responseData = await response.json();
+  //       setBlogs(responseData.data); // Update the 'blogs' state
+  //       console.log(responseData.data);
+  //       setIspending(false);
+  //       setError(null);
+  //     } catch (err) {
+  //       setIspending(false);
+  //       setError(err.message);
+  //     }
+  //   };
+
+  //   fetchData(); // Fetch data immediately
+  // }, [url]);
+  // --------------------------------
+
+  const [blogs, setBlogs] = useState([]);
+  const [isPending, setIspending] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Define fetchData function outside of useEffect
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error("Could not fetch the resources, check the endpoints");
+      }
+
+      const responseData = await response.json();
+      setBlogs(responseData.data); // Update the 'blogs' state
+      console.log(responseData.data);
+      setIspending(false);
+      setError(null);
+    } catch (err) {
+      setIspending(false);
+      setError(err.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); // Fetch data immediately
+  }, []); // Empty dependency array to run only once on component mount
+  // -------------------------------------------------------------------
   const uniqueCategories = blogs
     ? Array.from(new Set(blogs.map((blog) => blog.category))).length
     : 0;
@@ -48,18 +106,19 @@ const Dashboard = () => {
       if (response.ok) {
         // Handle a successful deletion
         toast.success("Post deleted successfully");
-        setIspending(false);
+        setIspendingDelete(false);
+        fetchData();
         // You can also perform additional actions here, such as updating the UI
       } else {
         // Handle the case where the deletion request was not successful
         toast.error("Failed to delete the post");
-        setIspending(false);
+        setIspendingDelete(false);
       }
     } catch (error) {
       // Handle any fetch errors
       console.error("Fetch error:", error);
       toast.error("Fetch error:", error);
-      setIspending(false);
+      setIspendingDelete(false);
     }
   };
 
@@ -163,11 +222,11 @@ const Dashboard = () => {
                       className="icon"
                       onClick={() => {
                         handleDelete(blog._id);
-                        setIspending(true);
+                        setIspendingDelete(true);
                       }}
                     />
                   )}
-                  {ispending && <AiOutlineLoading3Quarters className="icon" />}
+                  {isPending && <AiOutlineLoading3Quarters className="icon" />}
                 </div>
                 {/* </Link> */}
               </div>
