@@ -64,19 +64,6 @@ const Singleblog = () => {
       )}
       {blog && (
         <>
-          {/* <div className="first-comments">
-            <div className="side-one">
-              <img src={Img1} alt="avatar" />
-            </div>
-            <div className="side-two">
-              <div className="username-comment">
-                Name: <span>{blog.comments[0].user.fname}</span>
-              </div>
-              <div className="username-comment">
-                Commented: <span>{blog.comments[0].commentBody}</span>
-              </div>
-            </div>
-          </div> */}
           {blog.comments.map((comment, index) => (
             <div key={index} className="first-comments">
               <div className="side-one">
