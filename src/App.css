@@ -712,6 +712,12 @@ input:focus {
   justify-content: center;
   align-items: center;
 }
+.login-form form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .login-form button {
   border: none;
   outline: none;

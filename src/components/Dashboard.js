@@ -18,7 +18,10 @@ const Dashboard = () => {
   useEffect(() => {
     let email = sessionStorage.getItem("email");
     let role = sessionStorage.getItem("role");
-    if (email === "" || (email === null && role !== "admin")) history.push("/");
+    if (email === "" || (email === null && role !== "admin")) {
+      toast.error("login first");
+      history.push("/");
+    }
   }, []);
   const url = "https://lastlast.onrender.com/api/post/posts";
   const { data: blogs, isPending, error } = useFetch(url);

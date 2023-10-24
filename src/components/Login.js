@@ -10,6 +10,8 @@ const Login = ({ setOpenModal, setIsLoginClicked }) => {
   const [loginActive, setLoginActive] = useState(true);
   const [registerActive, setRegisterActive] = useState(false);
   const [forgotActive, setForgotActive] = useState(false);
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isPending, setIspending] = useState(false);
@@ -41,22 +43,84 @@ const Login = ({ setOpenModal, setIsLoginClicked }) => {
           // Assuming the response includes a token, you can save it to a secure location, such as localStorage.
           localStorage.setItem("token", responseData.token);
           localStorage.setItem("role", responseData.data.role);
-          // Redirect to a new page or perform any other action for a successful login.
-          setEmail("");
-          setPassword("");
-          Toast.success("Login successful");
-          history.push("/dashboard");
-          sessionStorage.setItem("email", email);
-          sessionStorage.setItem("password", password);
-          setOpenModal(false);
-          setIsLoginClicked(false);
-          setIspending(false);
+          let role = sessionStorage.getItem("role");
+          if (role === "admin") {
+            // Redirect to a new page or perform any other action for a successful login.
+            setEmail("");
+            setPassword("");
+            Toast.success("Login successful");
+            history.push("/dashboard");
+            sessionStorage.setItem("email", email);
+            sessionStorage.setItem("password", password);
+            setOpenModal(false);
+            setIsLoginClicked(false);
+            setIspending(false);
+          } else {
+            setEmail("");
+            setPassword("");
+            Toast.success("User Login successful");
+            history.push("/");
+            sessionStorage.setItem("email", email);
+            sessionStorage.setItem("password", password);
+            setOpenModal(false);
+            setIsLoginClicked(false);
+            setIspending(false);
+          }
         } else {
           // Handle login failure, e.g., display an error message to the user.
           setEmail("");
           setPassword("");
           console.error("Login failed");
           Toast.error("Incorect username and password!");
+          setIspending(false);
+        }
+      } catch (error) {
+        // Handle network errors or other exceptions.
+        console.error("An error occurred:", error);
+      }
+    }
+  };
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    if (validate()) {
+      // Create a data object with the user's email and password
+      const data = {
+        firstname,
+        lastname,
+        email,
+        password,
+      };
+
+      try {
+        setIspending(true);
+        const response = await fetch(
+          "https://lastlast.onrender.com/api/users/signUp/",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
+
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log(responseData);
+          // Redirect to a new page or perform any other action for a successful login.
+          setFirstname("");
+          setLastname("");
+          setEmail("");
+          setPassword("");
+          Toast.success("User added successful");
+        } else {
+          // Handle login failure, e.g., display an error message to the user.
+          setFirstname("");
+          setFirstname("");
+          setEmail("");
+          setPassword("");
+          console.error("user adding failed");
+          Toast.error("Failed to add user");
           setIspending(false);
         }
       } catch (error) {
@@ -169,51 +233,68 @@ const Login = ({ setOpenModal, setIsLoginClicked }) => {
           <div className="register-container">
             <div className="login-container">
               <div className="login-form">
-                <div className="login-header">
-                  <h1 className="reg-form-header">Register Form</h1>
-                  <p>Already have an account?</p>
-                  <span className="click-to-register">
-                    {/* <Link to="/login">Login</Link> */}
-                    <button
-                      className="login-btn"
-                      onClick={() => {
-                        setRegisterActive(false);
-                        setForgotActive(false);
-                        setLoginActive(true);
-                      }}
-                    >
-                      Login
-                    </button>
-                  </span>
-                </div>
-                <div className="login-username">
-                  <input
-                    type="text"
-                    placeholder="Enter first name..."
-                    className="username-focus"
-                  />
-                </div>
-                <div className="login-username">
-                  <input
-                    type="text"
-                    placeholder="Enter last name..."
-                    className="username-focus"
-                  />
-                </div>
-                <div className="login-username">
-                  <input
-                    type="text"
-                    placeholder="Enter username..."
-                    className="username-focus"
-                  />
-                </div>
-                <div className="login-password">
-                  <input type="password" placeholder="Enter password..." />
-                  <BiSolidHide className="login-password-hide-icon" />
-                </div>
-                <div className="login-button register-button">
-                  <h1>Register Now</h1>
-                </div>
+                <form onSubmit={handleRegister}>
+                  <div className="login-header">
+                    <h1 className="reg-form-header">Register Form</h1>
+                    <p>Already have an account?</p>
+                    <span className="click-to-register">
+                      {/* <Link to="/login">Login</Link> */}
+                      <button
+                        className="login-btn"
+                        onClick={() => {
+                          setRegisterActive(false);
+                          setForgotActive(false);
+                          setLoginActive(true);
+                        }}
+                      >
+                        Login
+                      </button>
+                    </span>
+                  </div>
+                  <div className="login-username">
+                    <input
+                      required
+                      type="text"
+                      value={firstname}
+                      onChange={(e) => setFirstname(e.target.value)}
+                      placeholder="Enter first name..."
+                      className="username-focus"
+                    />
+                  </div>
+                  <div className="login-username">
+                    <input
+                      required
+                      type="text"
+                      value={lastname}
+                      onChange={(e) => setLastname(e.target.value)}
+                      placeholder="Enter last name..."
+                      className="username-focus"
+                    />
+                  </div>
+                  <div className="login-username">
+                    <input
+                      required
+                      type="text"
+                      placeholder="Enter email..."
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="username-focus"
+                    />
+                  </div>
+                  <div className="login-password">
+                    <input
+                      required
+                      type="password"
+                      placeholder="Enter password..."
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    {/* <BiSolidHide className="login-password-hide-icon" /> */}
+                  </div>
+                  <div className="login-button register-button">
+                    <button type="submit">Register Now</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
