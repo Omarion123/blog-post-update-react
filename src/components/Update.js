@@ -65,8 +65,8 @@ const Update = () => {
       };
 
       // Make the fetch request with the headers and FormData
-      fetch(`https://lastlast.onrender.com/api/post/one/${_id}`, {
-        method: "UPDATE",
+      fetch(`https://lastlast.onrender.com/api/post/update/${_id}`, {
+        method: "put",
         headers: headers,
         body: formData, // Use FormData to send the data
       })
@@ -128,7 +128,8 @@ const Update = () => {
                 <input
                   type="text"
                   required
-                  value={blog.category}
+                  placeholder={blog.category}
+                  value={category}
                   onChange={(e) => setCategory(e.target.value)}
                 />
               </div>
@@ -146,7 +147,8 @@ const Update = () => {
                 <input
                   type="text"
                   required
-                  value={blog.title}
+                  placeholder={blog.title}
+                  value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
               </div>
@@ -155,7 +157,8 @@ const Update = () => {
                 <input
                   type="text"
                   required
-                  value={blog.header}
+                  placeholder={blog.header}
+                  value={heading}
                   onChange={(e) => setHeading(e.target.value)}
                 />
               </div>
@@ -165,7 +168,8 @@ const Update = () => {
                 <textarea
                   rows="4"
                   required
-                  value={blog.description}
+                  placeholder={blog.description}
+                  value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
               </div>
