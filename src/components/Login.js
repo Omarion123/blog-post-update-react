@@ -40,15 +40,16 @@ const Login = ({ setOpenModal, setIsLoginClicked }) => {
 
         if (response.ok) {
           const responseData = await response.json();
+          console.log(responseData);
           // Assuming the response includes a token, you can save it to a secure location, such as localStorage.
           localStorage.setItem("token", responseData.token);
           localStorage.setItem("role", responseData.data.role);
-          let role = sessionStorage.getItem("role");
+          let role = localStorage.getItem("role");
           if (role === "admin") {
             // Redirect to a new page or perform any other action for a successful login.
             setEmail("");
             setPassword("");
-            Toast.success("Login successful");
+            Toast.success("Admin Login successful");
             history.push("/dashboard");
             sessionStorage.setItem("email", email);
             sessionStorage.setItem("password", password);
