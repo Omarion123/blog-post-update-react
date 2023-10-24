@@ -11,9 +11,11 @@ import useFetch from "./useFetch";
 import { Animated } from "react-animated-css";
 import { useHistory } from "react-router-dom";
 import toast from "react-hot-toast";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Dashboard = () => {
-  const [ispendingDelete, setIspendingDelete] = useState(false);
+  const [loading, setLoading] = useState(false);
+  // const [ispendingDelete, setLoading] = useState(false);
   const history = useHistory();
   useEffect(() => {
     let email = sessionStorage.getItem("email");
@@ -106,19 +108,19 @@ const Dashboard = () => {
       if (response.ok) {
         // Handle a successful deletion
         toast.success("Post deleted successfully");
-        setIspendingDelete(false);
+        setLoading(false);
         fetchData();
         // You can also perform additional actions here, such as updating the UI
       } else {
         // Handle the case where the deletion request was not successful
         toast.error("Failed to delete the post");
-        setIspendingDelete(false);
+        setLoading(false);
       }
     } catch (error) {
       // Handle any fetch errors
       console.error("Fetch error:", error);
       toast.error("Fetch error:", error);
-      setIspendingDelete(false);
+      setLoading(false);
     }
   };
 
@@ -222,11 +224,13 @@ const Dashboard = () => {
                       className="icon"
                       onClick={() => {
                         handleDelete(blog._id);
-                        setIspendingDelete(true);
+                        setLoading(true);
                       }}
                     />
                   )}
-                  {isPending && <AiOutlineLoading3Quarters className="icon" />}
+                  {loading && (
+                    <ClipLoader color={"#f79918"} loading={loading} size={50} />
+                  )}
                 </div>
                 {/* </Link> */}
               </div>
