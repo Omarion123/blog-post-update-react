@@ -27,6 +27,7 @@ const Addblog = () => {
   // const [author, setAuthor] = useState("");
   const createdAt = new Date().toISOString().slice(0, 10);
   let author = localStorage.getItem("username");
+  console.log(author);
   const [title, setTitle] = useState("");
   const [heading, setHeading] = useState("");
   const [description, setDescription] = useState("");
