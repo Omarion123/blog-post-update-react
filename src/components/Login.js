@@ -61,7 +61,7 @@ const Login = ({ setOpenModal, setIsLoginClicked }) => {
             setEmail("");
             setPassword("");
             Toast.success("User Login successful");
-            history.push("/");
+            history.push("/home");
             sessionStorage.setItem("email", email);
             sessionStorage.setItem("password", password);
             setOpenModal(false);
