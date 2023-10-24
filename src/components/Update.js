@@ -103,7 +103,7 @@ const Update = () => {
   };
   return (
     <div className="update">
-      <h1>Updated</h1>
+      <h1>Let's update this thing</h1>
       {isPending && <div>Loading....</div>}
       {error && <div>{error}</div>}
       {blog && (
