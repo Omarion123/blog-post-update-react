@@ -186,7 +186,7 @@ const Login = ({ setOpenModal, setIsLoginClicked }) => {
                 </div>
                 <div className="login-username">
                   <input
-                    required
+                    // required
                     type="text"
                     placeholder="Enter email..."
                     className="username-focus"

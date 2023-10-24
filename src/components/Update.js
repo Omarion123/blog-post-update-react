@@ -9,6 +9,7 @@ import { CgDetailsMore } from "react-icons/cg";
 // import { BsPersonBadgeFill } from "react-icons/bs";
 import { IoIosAdd } from "react-icons/io";
 import toast from "react-hot-toast";
+import { Animated } from "react-animated-css";
 
 import { useHistory } from "react-router-dom";
 const Update = () => {
@@ -106,7 +107,9 @@ const Update = () => {
   };
   return (
     <div className="update">
-      <h1>Let's update this thing</h1>
+      <Animated animationIn="bounceInLeft" animationOut="fadeOut">
+        <h1>Let's update this thing</h1>
+      </Animated>
       {isPending && <div>Loading....</div>}
       {error && <div>{error}</div>}
       {blog && (

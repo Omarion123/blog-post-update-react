@@ -90,7 +90,7 @@ const Dashboard = () => {
         <div className="grid1">
           <div className="left-side">
             <h3>Users</h3>
-            <h1>21</h1>
+            <h1>6</h1>
           </div>
           <div className="right-side">
             <AiOutlineUsergroupAdd className="icon" />

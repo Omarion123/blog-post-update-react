@@ -886,6 +886,7 @@ input:focus {
   align-items: center;
   height: 80px;
   border-top-right-radius: 20px;
+  padding: 0 1rem;
 }
 .author-category-date span {
   color: var(--text-color-white);
@@ -1531,4 +1532,15 @@ input:focus {
     margin-top: 2rem;
   }
   /* --------------------------------------- */
+  .author-category-date {
+    background-color: var(--primary-color);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    border-top-right-radius: 20px;
+    padding: 0 1rem;
+  }
 }
