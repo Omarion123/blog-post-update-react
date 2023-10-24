@@ -26,7 +26,7 @@ const Addblog = () => {
   const [category, setCategory] = useState("");
   // const [author, setAuthor] = useState("");
   const createdAt = new Date().toISOString().slice(0, 10);
-
+  let author = localStorage.getItem("username");
   const [title, setTitle] = useState("");
   const [heading, setHeading] = useState("");
   const [description, setDescription] = useState("");
@@ -40,6 +40,7 @@ const Addblog = () => {
     formData.append("image", image); // Append the image
     formData.append("category", category);
     formData.append("createdAt", createdAt);
+    formData.append("author", author);
     formData.append("title", title);
     formData.append("header", heading);
     formData.append("description", description);
@@ -119,6 +120,7 @@ const Addblog = () => {
             <input
               type="text"
               required
+              placeholder="Enter category..."
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             />
@@ -138,6 +140,7 @@ const Addblog = () => {
               type="text"
               required
               value={title}
+              placeholder="Enter title..."
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
@@ -147,6 +150,7 @@ const Addblog = () => {
               type="text"
               required
               value={heading}
+              placeholder="Enter header..."
               onChange={(e) => setHeading(e.target.value)}
             />
           </div>
@@ -157,6 +161,7 @@ const Addblog = () => {
               rows="4"
               required
               value={description}
+              placeholder="Enter description..."
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
