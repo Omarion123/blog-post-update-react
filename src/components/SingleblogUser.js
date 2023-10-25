@@ -1,15 +1,37 @@
-import React, { useState } from "react";
-import Img1 from "./images/image1.jpeg";
+import React, { useEffect, useState } from "react";
+// import Img1 from "./images/image1.jpeg";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import useFetch from "./useFetch";
+import Img1 from "./images/image1.jpeg";
+
+// import useFetch from "./useFetch";
 import toast from "react-hot-toast";
 const Singleblog = () => {
   const { _id } = useParams();
-  const {
-    data: blog,
-    isPending,
-    error,
-  } = useFetch(`https://lastlast.onrender.com/api/post/one/${_id}`);
+  const [blogData, setBlogData] = useState({});
+
+  // useEffect(() => {
+  //   const getAll = async () => {
+  //     await fetch(`https://lastlast.onrender.com/api/post/one/${_id}`)
+  //       .then((response) => response.json())
+  //       .then((res) => {
+  //         setBlogData(res.data);
+  //       });
+  //   };
+
+  //   getAll();
+  // }, []);
+  const getAll = async () => {
+    await fetch(`https://lastlast.onrender.com/api/post/one/${_id}`)
+      .then((response) => response.json())
+      .then((res) => {
+        setBlogData(res.data);
+      });
+  };
+
+  useEffect(() => {
+    getAll();
+  }, []);
+  console.log("POSTS", blogData);
   const [commenting, setCommenting] = useState("");
   let username = localStorage.getItem("username");
   const handleSubmit = (e) => {
@@ -48,6 +70,8 @@ const Singleblog = () => {
             // setIspending(false);
             console.log("blog added");
             toast.success("Comment added successfully");
+            // Re-fetch blog data after successful comment submission
+            getAll();
             // Request was successful
             return response.json();
           } else {
@@ -66,52 +90,12 @@ const Singleblog = () => {
     } else {
       console.error("Token not found in localStorage. Please log in.");
       toast.error("Token not found in localStorage. Please log in.");
+      setCommenting("");
     }
   };
   return (
     <div className="singleblog-container">
-      {isPending && <div>Loading....</div>}
-      {error && <div>{error}</div>}
-      {blog && (
-        <>
-          <div className="blog-title">
-            <h1>{blog.title}</h1>
-          </div>
-          <div className="image-title">
-            <img src={blog.image} alt="Ghost of tsushima" />
-          </div>
-          <div className="single-description">
-            <div className="author-category-date">
-              <div className="author-single">
-                Author: <span>{blog.author[0].fname}</span>
-              </div>
-              <div className="category-single">
-                Category: <span>{blog.category}</span>
-              </div>
-              <div className="date-single">
-                Date: <span>October 9, 2023</span>
-              </div>
-            </div>
-            <div className="description">
-              <p>{blog.content}</p>
-            </div>
-          </div>
-
-          {/* <div className="first-comments">
-            <div className="side-one">
-              <img src={Img1} alt="avatar" />
-            </div>
-            <div className="side-two">
-              <div className="username-comment">
-                Name: <span>{blog.comments[0].user.fname}</span>
-              </div>
-              <div className="username-comment">
-                Commented: <span>{blog.comments[0].commentBody}</span>
-              </div>
-            </div>
-          </div> */}
-        </>
-      )}
+      <p>{blogData.title}</p>
       <h2 className="comment-head">Comments</h2>
       <div className="comment-side">
         <form onSubmit={handleSubmit}>
@@ -133,9 +117,9 @@ const Singleblog = () => {
           </button>
         </form>
       </div>
-      {blog && (
-        <>
-          {blog.comments.map((comment, index) => (
+      {blogData.comments && blogData.comments.length > 0 && (
+        <div className="comments-section">
+          {blogData.comments.map((comment, index) => (
             <div key={index} className="first-comments">
               <div className="side-one">
                 <img src={Img1} alt="avatar" />
@@ -150,7 +134,7 @@ const Singleblog = () => {
               </div>
             </div>
           ))}
-        </>
+        </div>
       )}
     </div>
   );
