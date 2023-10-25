@@ -53,41 +53,29 @@ const Singleblog = () => {
 
     console.log("token", token);
 
-    // Check if the token is available
     if (token) {
-      // No need to set Content-Type explicitly; FormData sets it automatically
-      // Create headers with the token
       const headers = {
         Authorization: `Bearer ${token}`,
       };
 
-      // Make the fetch request with the headers and FormData
       fetch(`https://lastlast.onrender.com/api/commenting/comment/${_id}`, {
         method: "POST",
         headers: headers,
-        body: formData, // Use FormData to send the data
+        body: formData,
       })
         .then((response) => {
           if (response.ok) {
             setCommenting("");
-            // setIspending(false);
             console.log("blog added");
             toast.success("Comment added successfully");
-            // Re-fetch blog data after successful comment submission
             getAll();
-            // Request was successful
             return response.json();
           } else {
-            // Handle error
-            // setIspending(false);
             console.error("Request failed with status:", response.status);
             toast.error("Request failed with status:", response.status);
-            // You can also handle specific error codes here
           }
         })
         .catch((error) => {
-          // Handle fetch errors
-          // setIspending(false);
           toast.error("Fetch error:", error);
         });
     } else {
@@ -103,10 +91,10 @@ const Singleblog = () => {
           className="my-clip-loader"
           color={"#f79918"}
           loading={loading}
-          size={50}
+          size={150}
         />
       )}
-      {blogData && (
+      {!loading && (
         <>
           <div className="blog-title">
             <h1>{blogData.title}</h1>
@@ -117,7 +105,6 @@ const Singleblog = () => {
           <div className="single-description">
             <div className="author-category-date">
               <div className="author-single">
-                {/* Author: <span>{blogData.author[0].fname}</span> */}
                 Author: <span>{blogData.author?.[0]?.fname}</span>
               </div>
               <div className="category-single">
@@ -148,7 +135,6 @@ const Singleblog = () => {
               onChange={(e) => setCommenting(e.target.value)}
             />
           </div>
-          {/* <div className="comment-button">Comment</div> */}
           <button type="submit" className="comment-button">
             Comment
           </button>
@@ -156,21 +142,6 @@ const Singleblog = () => {
       </div>
       {blogData.comments && blogData.comments.length > 0 && (
         <div className="comments-section">
-          {/* {blogData.comments.map((comment, index) => (
-            <div key={index} className="first-comments">
-              <div className="side-one">
-                <img src={Img1} alt="avatar" />
-              </div>
-              <div className="side-two">
-                <div className="username-comment">
-                  Name: <span>{comment.user.fname}</span>
-                </div>
-                <div className="username-comment">
-                  Commented: <span>{comment.commentBody}</span>
-                </div>
-              </div>
-            </div>
-          ))} */}
           {blogData.comments
             .slice()
             .reverse()
