@@ -18,6 +18,7 @@ import Addblog from "./components/Addblog";
 import Loginmodel from "./components/Loginmodel";
 import { Toaster } from "react-hot-toast";
 import Update from "./components/Update";
+import SingleblogUser from "./components/SingleblogUser";
 
 function App() {
   return (
@@ -58,6 +59,9 @@ function App() {
                 </Route>
                 <Route path="/blogs/:_id">
                   <Singleblog />
+                </Route>
+                <Route path="/blogsUser/:_id">
+                  <SingleblogUser />
                 </Route>
                 <Route path="/dashboard">
                   <Dashboard />

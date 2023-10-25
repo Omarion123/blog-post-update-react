@@ -23,6 +23,7 @@ const Navbar = () => {
   const isHome = location.pathname === "/home";
   // const isUpdate = location.pathname === "/update/:_id";
   const isUpdate = location.pathname.startsWith("/update/");
+  const isBloglistUser = location.pathname.startsWith("/blogsUser/");
   // Step 1: Create a state variable to manage menu visibility
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -68,6 +69,37 @@ const Navbar = () => {
               <FontAwesomeIcon className="iconfa" icon={faInstagram} />
             </div>
           </div>
+
+          {/* {!isDashboardPage && !isAddBlogPage && !isUpdate && ( */}
+          {!(
+            isDashboardPage ||
+            isAddBlogPage ||
+            isUpdate ||
+            isHome ||
+            isBloglistUser
+          ) && (
+            <div className="menus second-menu">
+              <Link to="/" onClick={closeMenu}>
+                <h2 className="home">Home</h2>
+              </Link>
+              <Link to="/aboutus" onClick={closeMenu}>
+                <h2>About us</h2>
+              </Link>
+              <Link to="/contactus" onClick={closeMenu}>
+                <h2>Contact us</h2>
+              </Link>
+              <button
+                className="login-btn login-nav"
+                onClick={() => {
+                  setModalOpen(true);
+                  closeMenu();
+                  setIsLoginClicked(true);
+                }}
+              >
+                Login
+              </button>
+            </div>
+          )}
           {isHome && (
             <div className="menus third-menu">
               <Link to="/" onClick={closeMenu}>
@@ -93,9 +125,8 @@ const Navbar = () => {
               </button>
             </div>
           )}
-          {/* {!isDashboardPage && !isAddBlogPage && !isUpdate && ( */}
-          {!(isDashboardPage || isAddBlogPage || isUpdate || isHome) && (
-            <div className="menus second-menu">
+          {isBloglistUser && (
+            <div className="menus third-menu">
               <Link to="/" onClick={closeMenu}>
                 <h2 className="home">Home</h2>
               </Link>
@@ -108,12 +139,14 @@ const Navbar = () => {
               <button
                 className="login-btn login-nav"
                 onClick={() => {
-                  setModalOpen(true);
                   closeMenu();
-                  setIsLoginClicked(true);
+                  history.push("/");
+                  sessionStorage.clear();
+                  localStorage.clear();
+                  Toast.success("User Logged out successfully");
                 }}
               >
-                Login
+                Logout
               </button>
             </div>
           )}
