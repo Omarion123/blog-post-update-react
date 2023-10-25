@@ -1,5 +1,6 @@
 import React from "react";
-import Cards from "./Cards";
+// import Cards from "./Cards";
+import CardsUser from "./CardsUser";
 import { Link } from "react-router-dom";
 // import Img1 from "./images/image1.jpeg";
 const Home = () => {
@@ -13,7 +14,7 @@ const Home = () => {
           </Link>
         </div>
       </div>
-      <Cards />
+      <CardsUser />
     </div>
   );
 };

@@ -66,6 +66,7 @@ const Singleblog = () => {
     } else {
       console.error("Token not found in localStorage. Please log in.");
       toast.error("Token not found in localStorage. Please log in.");
+      setCommenting("");
     }
   };
   return (
