@@ -99,36 +99,44 @@ const Dashboard = () => {
   //   console.log("deleted");
   //   console.log(id);
   // };
+
   const handleDelete = async (id) => {
-    try {
-      setPostIdToDelete(id); // Set the post ID that's being deleted
+    const result = window.confirm("Are you sure you want to delete this item?");
 
-      // Send a DELETE request to the API endpoint with the id as a parameter
-      const response = await fetch(
-        `https://lastlast.onrender.com/api/post/delete/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // Include your authorization header
-          },
+    if (result) {
+      try {
+        setPostIdToDelete(id); // Set the post ID that's being deleted
+
+        // Send a DELETE request to the API endpoint with the id as a parameter
+        const response = await fetch(
+          `https://lastlast.onrender.com/api/post/delete/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`, // Include your authorization header
+            },
+          }
+        );
+
+        if (response.ok) {
+          // Handle a successful deletion
+          toast.success("Post deleted successfully");
+          fetchData();
+          setPostIdToDelete(null); // Reset the post ID after deletion
+        } else {
+          // Handle the case where the deletion request was not successful
+          toast.error("Failed to delete the post");
+          setPostIdToDelete(null); // Reset the post ID in case of an error
         }
-      );
-
-      if (response.ok) {
-        // Handle a successful deletion
-        toast.success("Post deleted successfully");
-        fetchData();
-        setPostIdToDelete(null); // Reset the post ID after deletion
-      } else {
-        // Handle the case where the deletion request was not successful
-        toast.error("Failed to delete the post");
+      } catch (error) {
+        // Handle any fetch errors
+        console.error("Fetch error:", error);
+        toast.error("Fetch error:", error);
         setPostIdToDelete(null); // Reset the post ID in case of an error
       }
-    } catch (error) {
-      // Handle any fetch errors
-      console.error("Fetch error:", error);
-      toast.error("Fetch error:", error);
-      setPostIdToDelete(null); // Reset the post ID in case of an error
+    } else {
+      // Handle the cancel action here
+      console.log("Deletion canceled");
     }
   };
 
