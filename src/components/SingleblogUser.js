@@ -119,7 +119,7 @@ const Singleblog = () => {
       </div>
       {blogData.comments && blogData.comments.length > 0 && (
         <div className="comments-section">
-          {blogData.comments.map((comment, index) => (
+          {/* {blogData.comments.map((comment, index) => (
             <div key={index} className="first-comments">
               <div className="side-one">
                 <img src={Img1} alt="avatar" />
@@ -133,7 +133,25 @@ const Singleblog = () => {
                 </div>
               </div>
             </div>
-          ))}
+          ))} */}
+          {blogData.comments
+            .slice()
+            .reverse()
+            .map((comment, index) => (
+              <div key={index} className="first-comments">
+                <div className="side-one">
+                  <img src={Img1} alt="avatar" />
+                </div>
+                <div className="side-two">
+                  <div className="username-comment">
+                    Name: <span>{comment.user.fname}</span>
+                  </div>
+                  <div className="username-comment">
+                    Commented: <span>{comment.commentBody}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
         </div>
       )}
     </div>
