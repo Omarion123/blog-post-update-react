@@ -27,7 +27,8 @@ const Dashboard = () => {
     }
   }, []);
   // -------------------------------------------------------------------
-  const url = "https://lastlast.onrender.com/api/post/posts";
+  // const url = "https://lastlast.onrender.com/api/post/posts";
+  const url = "https://lastlast.onrender.com/api/post/adminPosts";
   // const { data: blogs, isPending, error } = useFetch(url);
   // -------------------------------------------------------------------
   // ----------------------
@@ -65,7 +66,12 @@ const Dashboard = () => {
   // Define fetchData function outside of useEffect
   const fetchData = async () => {
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Include your authorization header
+        },
+      });
 
       if (!response.ok) {
         throw new Error("Could not fetch the resources, check the endpoints");
