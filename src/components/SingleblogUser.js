@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 // import Img1 from "./images/image1.jpeg";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Img1 from "./images/image1.jpeg";
+import ClipLoader from "react-spinners/ClipLoader";
 
 // import useFetch from "./useFetch";
 import toast from "react-hot-toast";
 const Singleblog = () => {
   const { _id } = useParams();
   const [blogData, setBlogData] = useState({});
+  const [loading, setLoading] = useState(true);
 
   // useEffect(() => {
   //   const getAll = async () => {
@@ -25,6 +27,7 @@ const Singleblog = () => {
       .then((response) => response.json())
       .then((res) => {
         setBlogData(res.data);
+        setLoading(false);
       });
   };
 
@@ -95,6 +98,14 @@ const Singleblog = () => {
   };
   return (
     <div className="singleblog-container">
+      {loading && (
+        <ClipLoader
+          className="my-clip-loader"
+          color={"#f79918"}
+          loading={loading}
+          size={50}
+        />
+      )}
       {blogData && (
         <>
           <div className="blog-title">
