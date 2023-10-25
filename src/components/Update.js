@@ -108,7 +108,7 @@ const Update = () => {
   return (
     <div className="update">
       <Animated animationIn="bounceInLeft" animationOut="fadeOut">
-        <h1>Let's update this thing</h1>
+        <h1>Let's update this blog</h1>
       </Animated>
       {isPending && <div>Loading....</div>}
       {error && <div>{error}</div>}
