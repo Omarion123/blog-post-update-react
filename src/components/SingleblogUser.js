@@ -95,7 +95,32 @@ const Singleblog = () => {
   };
   return (
     <div className="singleblog-container">
-      <p>{blogData.title}</p>
+      {blogData && (
+        <>
+          <div className="blog-title">
+            <h1>{blogData.title}</h1>
+          </div>
+          <div className="image-title">
+            <img src={blogData.image} alt="Ghost of tsushima" />
+          </div>
+          <div className="single-description">
+            <div className="author-category-date">
+              <div className="author-single">
+                Author: <span>{blogData.author[0].fname}</span>
+              </div>
+              <div className="category-single">
+                Category: <span>{blogData.category}</span>
+              </div>
+              <div className="date-single">
+                Date: <span>October 9, 2023</span>
+              </div>
+            </div>
+            <div className="description">
+              <p>{blogData.content}</p>
+            </div>
+          </div>
+        </>
+      )}
       <h2 className="comment-head">Comments</h2>
       <div className="comment-side">
         <form onSubmit={handleSubmit}>
