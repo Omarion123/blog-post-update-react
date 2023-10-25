@@ -106,7 +106,8 @@ const Singleblog = () => {
           <div className="single-description">
             <div className="author-category-date">
               <div className="author-single">
-                Author: <span>{blogData.author[0].fname}</span>
+                {/* Author: <span>{blogData.author[0].fname}</span> */}
+                Author: <span>{blogData.author?.[0]?.fname}</span>
               </div>
               <div className="category-single">
                 Category: <span>{blogData.category}</span>
