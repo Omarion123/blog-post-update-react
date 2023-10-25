@@ -129,6 +129,7 @@ const Singleblog = () => {
           <div className="comment-input">
             Comments:{" "}
             <input
+              required
               type="text"
               value={commenting}
               placeholder="Enter comment here..."

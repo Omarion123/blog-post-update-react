@@ -78,6 +78,7 @@ const Addblog = () => {
             setIspending(false);
             console.log("blog added");
             toast.success("Blog added successfully");
+            history.push("/dashboard");
             // Request was successful
             return response.json();
           } else {
