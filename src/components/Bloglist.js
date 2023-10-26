@@ -8,11 +8,12 @@ const Bloglist = ({ blogs }) => {
             <img src={blog.image} alt="image" />
             <div className="category-date">
               <div className="category">{blog.category}</div>
-              {/* <div className="date">{blog.createdAt}</div> */}
               <div className="date">{blog.createdAt.substring(0, 10)}</div>
             </div>
-            {/* <div className="author">{blog.author[0].firstname}</div> */}
-            <div className="author">{blog.author.firstname}</div>
+            <div className="author">
+              {blog.author.firstname.charAt(0).toUpperCase() +
+                blog.author.firstname.slice(1)}
+            </div>
             <div className="title">{blog.title}</div>
             <div className="card-content">
               <p>
