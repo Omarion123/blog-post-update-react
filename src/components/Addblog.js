@@ -104,9 +104,9 @@ const Addblog = () => {
       toast.error("Token not found in localStorage. Please log in.");
     }
   };
-  const config = {
-    placeholder: "Enter description here...",
-  };
+  // const config = {
+  //   placeholder: "Enter description here...",
+  // };
   return (
     <div className="addblog">
       <form onSubmit={handleSubmit}>
