@@ -10,7 +10,10 @@ const Bloglist = ({ blogs }) => {
               <div className="category">{blog.category}</div>
               <div className="date">{blog.createdAt.substring(0, 10)}</div>
             </div>
-            <div className="author">{blog.author.firstname}</div>
+            <div className="author">
+              {blog.author.firstname.charAt(0).toUpperCase() +
+                blog.author.firstname.slice(1)}
+            </div>
             <div className="title">{blog.title}</div>
             <div className="card-content">
               <p>

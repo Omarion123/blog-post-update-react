@@ -105,7 +105,11 @@ const Singleblog = () => {
           <div className="single-description">
             <div className="author-category-date">
               <div className="author-single">
-                Author: <span>{blogData.author.firstname}</span>
+                Author:{" "}
+                <span>
+                  {blogData.author.firstname.charAt(0).toUpperCase() +
+                    blogData.author.firstname.slice(1)}
+                </span>
               </div>
               <div className="category-single">
                 Category: <span>{blogData.category}</span>
