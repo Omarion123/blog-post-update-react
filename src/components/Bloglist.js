@@ -11,12 +11,13 @@ const Bloglist = ({ blogs }) => {
               {/* <div className="date">{blog.createdAt}</div> */}
               <div className="date">{blog.createdAt.substring(0, 10)}</div>
             </div>
-            <div className="author">{blog.author[0].fname}</div>
+            {/* <div className="author">{blog.author[0].firstname}</div> */}
+            <div className="author">{blog.author.firstname}</div>
             <div className="title">{blog.title}</div>
             <div className="card-content">
               <p>
                 {blog && blog.description
-                  ? blog.description.substring(0, 100)
+                  ? blog.description.substring(0, 90)
                   : ""}
                 ...
               </p>

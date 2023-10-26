@@ -105,7 +105,7 @@ const Singleblog = () => {
           <div className="single-description">
             <div className="author-category-date">
               <div className="author-single">
-                Author: <span>{blogData.author?.[0]?.fname}</span>
+                Author: <span>{blogData.author.firstname}</span>
               </div>
               <div className="category-single">
                 Category: <span>{blogData.category}</span>
@@ -153,7 +153,7 @@ const Singleblog = () => {
                 </div>
                 <div className="side-two">
                   <div className="username-comment">
-                    Name: <span>{comment.user.fname}</span>
+                    Name: <span>{comment.user.firstname}</span>
                   </div>
                   <div className="username-comment">
                     Commented: <span>{comment.commentBody}</span>

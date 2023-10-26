@@ -10,7 +10,7 @@ const Bloglist = ({ blogs }) => {
               <div className="category">{blog.category}</div>
               <div className="date">{blog.createdAt.substring(0, 10)}</div>
             </div>
-            <div className="author">{blog.author[0].fname}</div>
+            <div className="author">{blog.author.firstname}</div>
             <div className="title">{blog.title}</div>
             <div className="card-content">
               <p>
