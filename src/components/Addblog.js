@@ -175,7 +175,7 @@ const Addblog = () => {
           </div> */}
           <div className="wysiwyg">
             <JoditEditor
-              config={config}
+              // config={config}
               ref={editor}
               value={description}
               onChange={(newContent) => setDescription(newContent)}
