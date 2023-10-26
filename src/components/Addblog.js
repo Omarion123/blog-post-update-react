@@ -163,7 +163,7 @@ const Addblog = () => {
               onChange={(e) => setHeading(e.target.value)}
             />
           </div>
-          <div className="image-select">
+          {/* <div className="image-select">
             <CgDetailsMore className="icon" />
             <textarea
               rows="4"
@@ -172,15 +172,15 @@ const Addblog = () => {
               placeholder="Enter description..."
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
-          </div>
-          {/* <div className="wysiwyg">
+          </div> */}
+          <div className="wysiwyg">
             <JoditEditor
               // config={config}
               ref={editor}
               value={description}
               onChange={(newContent) => setDescription(newContent)}
             />
-          </div> */}
+          </div>
           <div className="addbtn">
             {!ispending && (
               <button>
