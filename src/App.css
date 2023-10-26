@@ -1248,7 +1248,7 @@ input:focus {
 /* update css */
 
 .update form {
-  max-width: 400px;
+  width: 100%;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -1292,6 +1292,11 @@ input:focus {
 .my-clip-loader {
   display: block;
   text-align: center;
+}
+/* what you see is what you get */
+.wysiwyg {
+  width: 80%;
+  margin: 1rem auto 0;
 }
 /* Media queries */
 @media screen and (min-width: 1100px) {
@@ -1563,5 +1568,8 @@ input:focus {
     height: 80px;
     border-top-right-radius: 20px;
     padding: 0 1rem;
+  }
+  .update form {
+    max-width: 400px;
   }
 }
