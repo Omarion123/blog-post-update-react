@@ -7,6 +7,8 @@ import ClipLoader from "react-spinners/ClipLoader";
 // import useFetch from "./useFetch";
 import toast from "react-hot-toast";
 const Singleblog = () => {
+  const [commentingloader, setCommentingloader] = useState(false);
+  console.log("Comment loader is : ", commentingloader);
   const { _id } = useParams();
   const [blogData, setBlogData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -39,7 +41,7 @@ const Singleblog = () => {
   let username = localStorage.getItem("username");
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setCommentingloader(true);
     const formData = new FormData();
 
     // Append your form fields to the FormData object
@@ -66,6 +68,7 @@ const Singleblog = () => {
         .then((response) => {
           if (response.ok) {
             setCommenting("");
+            setCommentingloader(false);
             console.log("blog added");
             toast.success("Comment added successfully");
             getAll();
@@ -73,15 +76,18 @@ const Singleblog = () => {
           } else {
             console.error("Request failed with status:", response.status);
             toast.error("Request failed with status:", response.status);
+            setCommentingloader(false);
           }
         })
         .catch((error) => {
           toast.error("Fetch error:", error);
+          setCommentingloader(false);
         });
     } else {
       console.error("Token not found in localStorage. Please log in.");
       toast.error("Token not found in localStorage. Please log in.");
       setCommenting("");
+      setCommentingloader(false);
     }
   };
   return (
@@ -140,9 +146,16 @@ const Singleblog = () => {
               onChange={(e) => setCommenting(e.target.value)}
             />
           </div>
-          <button type="submit" className="comment-button">
-            Comment
-          </button>
+          {!commentingloader && (
+            <button type="submit" className="comment-button">
+              Comment
+            </button>
+          )}
+          {commentingloader && (
+            <button type="submit" className="comment-button">
+              Commenting...
+            </button>
+          )}
         </form>
       </div>
       {blogData.comments && blogData.comments.length > 0 && (

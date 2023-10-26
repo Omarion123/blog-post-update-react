@@ -1289,10 +1289,10 @@ input:focus {
   background-color: #0056b3;
 }
 /* My spinning loader */
-.my-clip-loader {
+/* .my-clip-loader {
   display: block;
   text-align: center;
-}
+} */
 /* what you see is what you get */
 .wysiwyg {
   width: 80%;
