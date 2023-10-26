@@ -105,56 +105,7 @@ const Navbar = () => {
               </button>
             </div>
           )}
-          {isHome && (
-            <div className="menus third-menu">
-              <Link to="/" onClick={closeMenu}>
-                <h2 className="home">Home</h2>
-              </Link>
-              <Link to="/aboutus" onClick={closeMenu}>
-                <h2>About us</h2>
-              </Link>
-              <Link to="/contactus" onClick={closeMenu}>
-                <h2>Contact us</h2>
-              </Link>
-              <button
-                className="login-btn login-nav"
-                onClick={() => {
-                  closeMenu();
-                  history.push("/");
-                  sessionStorage.clear();
-                  localStorage.clear();
-                  Toast.success("User Logged out successfully");
-                }}
-              >
-                Logout
-              </button>
-            </div>
-          )}
-          {isBloglistUser && (
-            <div className="menus third-menu">
-              <Link to="/" onClick={closeMenu}>
-                <h2 className="home">Home</h2>
-              </Link>
-              <Link to="/aboutus" onClick={closeMenu}>
-                <h2>About us</h2>
-              </Link>
-              <Link to="/contactus" onClick={closeMenu}>
-                <h2>Contact us</h2>
-              </Link>
-              <button
-                className="login-btn login-nav"
-                onClick={() => {
-                  closeMenu();
-                  history.push("/");
-                  sessionStorage.clear();
-                  localStorage.clear();
-                  Toast.success("User Logged out successfully");
-                }}
-              >
-                Logout
-              </button>
-            </div>
-          )}
+
           {isUserRole === "user" && (
             <div className="menus third-menu">
               <Link to="/" onClick={closeMenu}>
