@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Img1 from "./images/image1.jpeg";
 import ClipLoader from "react-spinners/ClipLoader";
+import SyncLoader from "react-spinners/ClipLoader";
 
 // import useFetch from "./useFetch";
 import toast from "react-hot-toast";
@@ -154,6 +155,12 @@ const Singleblog = () => {
           {commentingloader && (
             <button type="submit" className="comment-button">
               Commenting...
+              <ClipLoader
+                className="my-clip-loader"
+                color={"#000"}
+                loading={commentingloader}
+                size={25}
+              />
             </button>
           )}
         </form>
