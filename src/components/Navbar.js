@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MenuImage from "../components/svgs/menu.svg";
 import XImage from "../components/svgs/x.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,6 +24,10 @@ const Navbar = () => {
   // const isUpdate = location.pathname === "/update/:_id";
   const isUpdate = location.pathname.startsWith("/update/");
   const isBloglistUser = location.pathname.startsWith("/blogsUser/");
+  const isUserRole = localStorage.getItem("role");
+  useEffect(() => {
+    console.log(isUserRole);
+  }, [isUserRole]);
   // Step 1: Create a state variable to manage menu visibility
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -76,7 +80,8 @@ const Navbar = () => {
             isAddBlogPage ||
             isUpdate ||
             isHome ||
-            isBloglistUser
+            isBloglistUser ||
+            isUserRole === "user"
           ) && (
             <div className="menus second-menu">
               <Link to="/" onClick={closeMenu}>
@@ -100,32 +105,8 @@ const Navbar = () => {
               </button>
             </div>
           )}
-          {isHome && (
-            <div className="menus third-menu">
-              <Link to="/" onClick={closeMenu}>
-                <h2 className="home">Home</h2>
-              </Link>
-              <Link to="/aboutus" onClick={closeMenu}>
-                <h2>About us</h2>
-              </Link>
-              <Link to="/contactus" onClick={closeMenu}>
-                <h2>Contact us</h2>
-              </Link>
-              <button
-                className="login-btn login-nav"
-                onClick={() => {
-                  closeMenu();
-                  history.push("/");
-                  sessionStorage.clear();
-                  localStorage.clear();
-                  Toast.success("User Logged out successfully");
-                }}
-              >
-                Logout
-              </button>
-            </div>
-          )}
-          {isBloglistUser && (
+
+          {isUserRole === "user" && (
             <div className="menus third-menu">
               <Link to="/" onClick={closeMenu}>
                 <h2 className="home">Home</h2>
