@@ -21,7 +21,7 @@ const Bloglist = ({ blogs }) => {
             </p>
           </div>
           <div className="view-post">
-            <Link to={`/blogs/${blog._id}`}>View post</Link>
+            <Link to={`/blogsUser/${blog._id}`}>View post</Link>
           </div>
           {/* </Link> */}
         </div>

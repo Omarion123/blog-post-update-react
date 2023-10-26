@@ -6,6 +6,7 @@ import { FaHeading } from "react-icons/fa";
 import { CgDetailsMore } from "react-icons/cg";
 import { BsPersonBadgeFill } from "react-icons/bs";
 import { IoIosAdd } from "react-icons/io";
+import toast from "react-hot-toast";
 
 import { useHistory } from "react-router-dom";
 
@@ -14,44 +15,91 @@ const Addblog = () => {
 
   useEffect(() => {
     let email = sessionStorage.getItem("email");
-    if (email === "" || email === null) history.push("/");
+    let role = sessionStorage.getItem("role");
+    if (email === "" || (email === null && role !== "admin")) {
+      toast.error("login first");
+      history.push("/");
+    }
   }, []);
   const [image, setImage] = useState(null);
+  console.log(image);
   const [category, setCategory] = useState("");
-  const [author, setAuthor] = useState("");
+  // const [author, setAuthor] = useState("");
   const createdAt = new Date().toISOString().slice(0, 10);
-
+  let author = localStorage.getItem("username");
+  console.log(author);
   const [title, setTitle] = useState("");
   const [heading, setHeading] = useState("");
   const [description, setDescription] = useState("");
   const [ispending, setIspending] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const blog = {
-      image,
-      category,
-      author,
-      createdAt,
-      title,
-      heading,
-      description,
-    };
+
+    const formData = new FormData();
+
+    // Append your form fields to the FormData object
+    formData.append("image", image); // Append the image
+    formData.append("category", category);
+    formData.append("createdAt", createdAt);
+    formData.append("author", author);
+    formData.append("title", title);
+    formData.append("header", heading);
+    formData.append("description", description);
+
     setIspending(true);
-    fetch("http://localhost:7000/blogs", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(blog),
-    }).then(() => {
-      setIspending(false);
-      console.log("blog added");
-      alert("Blog added successfully");
-      setCategory("");
-      setAuthor("");
-      setTitle("");
-      setHeading("");
-      setDescription("");
-    });
+
+    // Retrieve the token from localStorage
+    const token = localStorage.getItem("token");
+
+    console.log("token", token);
+
+    // Check if the token is available
+    if (token) {
+      // No need to set Content-Type explicitly; FormData sets it automatically
+      // Create headers with the token
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      // Make the fetch request with the headers and FormData
+      fetch("https://lastlast.onrender.com/api/post/create/", {
+        method: "POST",
+        headers: headers,
+        body: formData, // Use FormData to send the data
+      })
+        .then((response) => {
+          if (response.ok) {
+            setImage(null);
+            setTitle("");
+            setImage(null);
+            setCategory("");
+            setHeading("");
+            setDescription("");
+            setIspending(false);
+            console.log("blog added");
+            toast.success("Blog added successfully");
+            history.push("/dashboard");
+            // Request was successful
+            return response.json();
+          } else {
+            // Handle error
+            setIspending(false);
+            console.error("Request failed with status:", response.status);
+            toast.error("Request failed with status:", response.status);
+            // You can also handle specific error codes here
+          }
+        })
+        .catch((error) => {
+          // Handle fetch errors
+          setIspending(false);
+          toast.error("Fetch error:", error);
+        });
+    } else {
+      console.error("Token not found in localStorage. Please log in.");
+      toast.error("Token not found in localStorage. Please log in.");
+    }
   };
+
   return (
     <div className="addblog">
       <form onSubmit={handleSubmit}>
@@ -63,8 +111,9 @@ const Addblog = () => {
               type="file"
               required
               placeholder="Insert image..."
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
+              // value={image}
+              // onChange={(e) => setImage(e.target.value)}
+              onChange={(e) => setImage(e.target.files[0])}
               className="file"
             />
           </div>
@@ -73,11 +122,12 @@ const Addblog = () => {
             <input
               type="text"
               required
+              placeholder="Enter category..."
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             />
           </div>
-          <div className="image-select">
+          {/* <div className="image-select">
             <BsPersonBadgeFill className="icon" />
             <input
               type="text"
@@ -85,13 +135,14 @@ const Addblog = () => {
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
             />
-          </div>
+          </div> */}
           <div className="image-select">
             <MdSubtitles className="icon" />
             <input
               type="text"
               required
               value={title}
+              placeholder="Enter title..."
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
@@ -101,6 +152,7 @@ const Addblog = () => {
               type="text"
               required
               value={heading}
+              placeholder="Enter header..."
               onChange={(e) => setHeading(e.target.value)}
             />
           </div>
@@ -111,6 +163,7 @@ const Addblog = () => {
               rows="4"
               required
               value={description}
+              placeholder="Enter description..."
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>

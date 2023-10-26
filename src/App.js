@@ -17,6 +17,9 @@ import Dashboard from "./components/Dashboard";
 import Addblog from "./components/Addblog";
 import Loginmodel from "./components/Loginmodel";
 import { Toaster } from "react-hot-toast";
+import Update from "./components/Update";
+import SingleblogUser from "./components/SingleblogUser";
+import HomeUser from "./components/HomeUser";
 
 function App() {
   return (
@@ -32,6 +35,9 @@ function App() {
               <Switch>
                 <Route exact path="/">
                   <Home />
+                </Route>
+                <Route exact path="/home">
+                  <HomeUser />
                 </Route>
                 <Route path="/aboutus">
                   <Aboutus />
@@ -55,11 +61,17 @@ function App() {
                 <Route path="/blogs/:_id">
                   <Singleblog />
                 </Route>
+                <Route path="/blogsUser/:_id">
+                  <SingleblogUser />
+                </Route>
                 <Route path="/dashboard">
                   <Dashboard />
                 </Route>
                 <Route path="/addblog">
                   <Addblog />
+                </Route>
+                <Route path="/update/:_id">
+                  <Update />
                 </Route>
               </Switch>
             </div>

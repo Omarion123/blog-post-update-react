@@ -2,9 +2,10 @@
 import { Animated } from "react-animated-css";
 // import { useState } from "react";
 import Bloglist from "./Bloglist";
+import BlogListUser from "./BloglistUser";
 import useFetch from "./useFetch";
-import ClipLoader from "react-spinners/ClipLoader";
 import { useEffect, useState } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Cards = () => {
   const [loading, setLoading] = useState(true);
@@ -17,7 +18,6 @@ const Cards = () => {
       setLoading(false);
     }
   }, [blogs]);
-
   return (
     <div className="cards">
       {error && (
@@ -52,7 +52,7 @@ const Cards = () => {
           </div>
         </Animated>
       )}
-      {blogs && <Bloglist blogs={blogs} />}
+      {blogs && <BlogListUser blogs={blogs} />}
     </div>
   );
 };

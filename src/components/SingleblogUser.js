@@ -1,25 +1,40 @@
-import React, { useState } from "react";
-import Img1 from "./images/image1.jpeg";
+import React, { useEffect, useState } from "react";
+// import Img1 from "./images/image1.jpeg";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import useFetch from "./useFetch";
-import toast from "react-hot-toast";
+import Img1 from "./images/image1.jpeg";
 import ClipLoader from "react-spinners/ClipLoader";
-import { useEffect } from "react";
 
+// import useFetch from "./useFetch";
+import toast from "react-hot-toast";
 const Singleblog = () => {
+  const { _id } = useParams();
+  const [blogData, setBlogData] = useState({});
   const [loading, setLoading] = useState(true);
 
-  const { _id } = useParams();
-  const {
-    data: blog,
-    isPending,
-    error,
-  } = useFetch(`https://lastlast.onrender.com/api/post/one/${_id}`);
+  // useEffect(() => {
+  //   const getAll = async () => {
+  //     await fetch(`https://lastlast.onrender.com/api/post/one/${_id}`)
+  //       .then((response) => response.json())
+  //       .then((res) => {
+  //         setBlogData(res.data);
+  //       });
+  //   };
+
+  //   getAll();
+  // }, []);
+  const getAll = async () => {
+    await fetch(`https://lastlast.onrender.com/api/post/one/${_id}`)
+      .then((response) => response.json())
+      .then((res) => {
+        setBlogData(res.data);
+        setLoading(false);
+      });
+  };
+
   useEffect(() => {
-    if (blog) {
-      setLoading(false);
-    }
-  }, [blog]);
+    getAll();
+  }, []);
+  console.log("POSTS", blogData);
   const [commenting, setCommenting] = useState("");
   let username = localStorage.getItem("username");
   const handleSubmit = (e) => {
@@ -38,39 +53,29 @@ const Singleblog = () => {
 
     console.log("token", token);
 
-    // Check if the token is available
     if (token) {
-      // No need to set Content-Type explicitly; FormData sets it automatically
-      // Create headers with the token
       const headers = {
         Authorization: `Bearer ${token}`,
       };
 
-      // Make the fetch request with the headers and FormData
       fetch(`https://lastlast.onrender.com/api/commenting/comment/${_id}`, {
         method: "POST",
         headers: headers,
-        body: formData, // Use FormData to send the data
+        body: formData,
       })
         .then((response) => {
           if (response.ok) {
             setCommenting("");
-            // setIspending(false);
             console.log("blog added");
             toast.success("Comment added successfully");
-            // Request was successful
+            getAll();
             return response.json();
           } else {
-            // Handle error
-            // setIspending(false);
             console.error("Request failed with status:", response.status);
             toast.error("Request failed with status:", response.status);
-            // You can also handle specific error codes here
           }
         })
         .catch((error) => {
-          // Handle fetch errors
-          // setIspending(false);
           toast.error("Fetch error:", error);
         });
     } else {
@@ -81,7 +86,6 @@ const Singleblog = () => {
   };
   return (
     <div className="singleblog-container">
-      {/* {isPending && <div>Loading....</div>} */}
       {loading && (
         <ClipLoader
           className="my-clip-loader"
@@ -90,36 +94,30 @@ const Singleblog = () => {
           size={150}
         />
       )}
-      {error && <div>{error}</div>}
-
       {!loading && (
         <>
-          {blog && (
-            <>
-              <div className="blog-title">
-                <h1>{blog.title}</h1>
+          <div className="blog-title">
+            <h1>{blogData.title}</h1>
+          </div>
+          <div className="image-title">
+            <img src={blogData.image} alt="Ghost of tsushima" />
+          </div>
+          <div className="single-description">
+            <div className="author-category-date">
+              <div className="author-single">
+                Author: <span>{blogData.author?.[0]?.fname}</span>
               </div>
-              <div className="image-title">
-                <img src={blog.image} alt="Ghost of tsushima" />
+              <div className="category-single">
+                Category: <span>{blogData.category}</span>
               </div>
-              <div className="single-description">
-                <div className="author-category-date">
-                  <div className="author-single">
-                    Author: <span>{blog.author[0].fname}</span>
-                  </div>
-                  <div className="category-single">
-                    Category: <span>{blog.category}</span>
-                  </div>
-                  <div className="date-single">
-                    Date: <span>October 9, 2023</span>
-                  </div>
-                </div>
-                <div className="description">
-                  <p>{blog.content}</p>
-                </div>
+              <div className="date-single">
+                Date: <span>October 9, 2023</span>
               </div>
-            </>
-          )}
+            </div>
+            <div className="description">
+              <p>{blogData.content}</p>
+            </div>
+          </div>
         </>
       )}
       <h2 className="comment-head">Comments</h2>
@@ -131,22 +129,21 @@ const Singleblog = () => {
           <div className="comment-input">
             Comments:{" "}
             <input
+              required
               type="text"
               value={commenting}
               placeholder="Enter comment here..."
               onChange={(e) => setCommenting(e.target.value)}
             />
           </div>
-          {/* <div className="comment-button">Comment</div> */}
           <button type="submit" className="comment-button">
             Comment
           </button>
         </form>
       </div>
-      {blog && (
-        <>
-          {/* {blog.comments.map((comment, index) => ( */}
-          {blog.comments
+      {blogData.comments && blogData.comments.length > 0 && (
+        <div className="comments-section">
+          {blogData.comments
             .slice()
             .reverse()
             .map((comment, index) => (
@@ -164,7 +161,7 @@ const Singleblog = () => {
                 </div>
               </div>
             ))}
-        </>
+        </div>
       )}
     </div>
   );

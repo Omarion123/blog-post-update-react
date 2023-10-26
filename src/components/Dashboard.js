@@ -1,26 +1,145 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BsPostcardHeart } from "react-icons/bs";
 import { BiCategoryAlt } from "react-icons/bi";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { MdAddCircleOutline } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import useFetch from "./useFetch";
 import { Animated } from "react-animated-css";
 import { useHistory } from "react-router-dom";
+import toast from "react-hot-toast";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Dashboard = () => {
+  const [loading, setLoading] = useState(false);
+  const [postIdToDelete, setPostIdToDelete] = useState(null);
+  // const [ispendingDelete, setLoading] = useState(false);
   const history = useHistory();
   useEffect(() => {
     let email = sessionStorage.getItem("email");
-    if (email === "" || email === null) history.push("/");
+    let role = sessionStorage.getItem("role");
+    if (email === "" || (email === null && role !== "admin")) {
+      toast.error("login first");
+      history.push("/");
+    }
   }, []);
-  const url = "https://lastlast.onrender.com/api/post/posts";
-  const { data: blogs, isPending, error } = useFetch(url);
+  // -------------------------------------------------------------------
+  // const url = "https://lastlast.onrender.com/api/post/posts";
+  const url = "https://lastlast.onrender.com/api/post/adminPosts";
+  // const { data: blogs, isPending, error } = useFetch(url);
+  // -------------------------------------------------------------------
+  // ----------------------
+  // const [blogs, setBlogs] = useState([]);
+  // const [isPending, setIspending] = useState(true);
+  // const [error, setError] = useState(null);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(url);
+
+  //       if (!response.ok) {
+  //         throw new Error("Could not fetch the resources, check the endpoints");
+  //       }
+
+  //       const responseData = await response.json();
+  //       setBlogs(responseData.data); // Update the 'blogs' state
+  //       console.log(responseData.data);
+  //       setIspending(false);
+  //       setError(null);
+  //     } catch (err) {
+  //       setIspending(false);
+  //       setError(err.message);
+  //     }
+  //   };
+
+  //   fetchData(); // Fetch data immediately
+  // }, [url]);
+  // --------------------------------
+
+  const [blogs, setBlogs] = useState([]);
+  const [isPending, setIspending] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Define fetchData function outside of useEffect
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Include your authorization header
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Could not fetch the resources, check the endpoints");
+      }
+
+      const responseData = await response.json();
+      setBlogs(responseData.data); // Update the 'blogs' state
+      console.log(responseData.data);
+      setIspending(false);
+      setError(null);
+    } catch (err) {
+      setIspending(false);
+      setError(err.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); // Fetch data immediately
+  }, []); // Empty dependency array to run only once on component mount
+  // -------------------------------------------------------------------
   const uniqueCategories = blogs
     ? Array.from(new Set(blogs.map((blog) => blog.category))).length
     : 0;
+  // const handleDelete = (id) => {
+  //   console.log("deleted");
+  //   console.log(id);
+  // };
+
+  const handleDelete = async (id) => {
+    const result = window.confirm("Are you sure you want to delete this item?");
+
+    if (result) {
+      try {
+        setPostIdToDelete(id); // Set the post ID that's being deleted
+
+        // Send a DELETE request to the API endpoint with the id as a parameter
+        const response = await fetch(
+          `https://lastlast.onrender.com/api/post/delete/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`, // Include your authorization header
+            },
+          }
+        );
+
+        if (response.ok) {
+          // Handle a successful deletion
+          toast.success("Post deleted successfully");
+          fetchData();
+          setPostIdToDelete(null); // Reset the post ID after deletion
+        } else {
+          // Handle the case where the deletion request was not successful
+          toast.error("Failed to delete the post");
+          setPostIdToDelete(null); // Reset the post ID in case of an error
+        }
+      } catch (error) {
+        // Handle any fetch errors
+        console.error("Fetch error:", error);
+        toast.error("Fetch error:", error);
+        setPostIdToDelete(null); // Reset the post ID in case of an error
+      }
+    } else {
+      // Handle the cancel action here
+      console.log("Deletion canceled");
+    }
+  };
+
   return (
     <div className="dashboard-container">
       <h3 className="dash-head">Dashboard</h3>
@@ -48,7 +167,7 @@ const Dashboard = () => {
         <div className="grid1">
           <div className="left-side">
             <h3>Users</h3>
-            <h1>21</h1>
+            <h1>6</h1>
           </div>
           <div className="right-side">
             <AiOutlineUsergroupAdd className="icon" />
@@ -101,7 +220,7 @@ const Dashboard = () => {
         {blogs && (
           <>
             {blogs.map((blog) => (
-              <div className="items1" key={blog.id}>
+              <div className="items1" key={blog._id}>
                 {/* <Link to={`/blogs/${blog.id}`}> */}
                 <div className="items-title">
                   <p>{blog.title}</p>
@@ -113,8 +232,21 @@ const Dashboard = () => {
                   ...
                 </div>
                 <div className="items-action">
-                  <AiFillEdit className="icon" />
-                  <MdDelete className="icon" />
+                  <Link to={`/update/${blog._id}`}>
+                    <AiFillEdit className="icon" />
+                  </Link>
+                  {!isPending && (
+                    <MdDelete
+                      className="icon"
+                      onClick={() => {
+                        handleDelete(blog._id);
+                        setLoading(true);
+                      }}
+                    />
+                  )}
+                  {loading && postIdToDelete === blog._id && (
+                    <ClipLoader color={"#f79918"} loading={loading} size={50} />
+                  )}
                 </div>
                 {/* </Link> */}
               </div>

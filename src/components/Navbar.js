@@ -20,6 +20,10 @@ const Navbar = () => {
 
   const isDashboardPage = location.pathname === "/dashboard";
   const isAddBlogPage = location.pathname === "/addblog";
+  const isHome = location.pathname === "/home";
+  // const isUpdate = location.pathname === "/update/:_id";
+  const isUpdate = location.pathname.startsWith("/update/");
+  const isBloglistUser = location.pathname.startsWith("/blogsUser/");
   // Step 1: Create a state variable to manage menu visibility
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -66,34 +70,89 @@ const Navbar = () => {
             </div>
           </div>
 
-          {
-            // !isDashboardPage && (
-            !(isDashboardPage || isAddBlogPage) && (
-              <div className="menus second-menu">
-                <Link to="/" onClick={closeMenu}>
-                  <h2 className="home">Home</h2>
-                </Link>
-                <Link to="/aboutus" onClick={closeMenu}>
-                  <h2>About us</h2>
-                </Link>
-                <Link to="/contactus" onClick={closeMenu}>
-                  <h2>Contact us</h2>
-                </Link>
-                <button
-                  className="login-btn login-nav"
-                  onClick={() => {
-                    setModalOpen(true);
-                    closeMenu();
-                    setIsLoginClicked(true);
-                  }}
-                >
-                  Login
-                </button>
-              </div>
-            )
-          }
-          {isAddBlogPage && (
+          {/* {!isDashboardPage && !isAddBlogPage && !isUpdate && ( */}
+          {!(
+            isDashboardPage ||
+            isAddBlogPage ||
+            isUpdate ||
+            isHome ||
+            isBloglistUser
+          ) && (
             <div className="menus second-menu">
+              <Link to="/" onClick={closeMenu}>
+                <h2 className="home">Home</h2>
+              </Link>
+              <Link to="/aboutus" onClick={closeMenu}>
+                <h2>About us</h2>
+              </Link>
+              <Link to="/contactus" onClick={closeMenu}>
+                <h2>Contact us</h2>
+              </Link>
+              <button
+                className="login-btn login-nav"
+                onClick={() => {
+                  setModalOpen(true);
+                  closeMenu();
+                  setIsLoginClicked(true);
+                }}
+              >
+                Login
+              </button>
+            </div>
+          )}
+          {isHome && (
+            <div className="menus third-menu">
+              <Link to="/" onClick={closeMenu}>
+                <h2 className="home">Home</h2>
+              </Link>
+              <Link to="/aboutus" onClick={closeMenu}>
+                <h2>About us</h2>
+              </Link>
+              <Link to="/contactus" onClick={closeMenu}>
+                <h2>Contact us</h2>
+              </Link>
+              <button
+                className="login-btn login-nav"
+                onClick={() => {
+                  closeMenu();
+                  history.push("/");
+                  sessionStorage.clear();
+                  localStorage.clear();
+                  Toast.success("User Logged out successfully");
+                }}
+              >
+                Logout
+              </button>
+            </div>
+          )}
+          {isBloglistUser && (
+            <div className="menus third-menu">
+              <Link to="/" onClick={closeMenu}>
+                <h2 className="home">Home</h2>
+              </Link>
+              <Link to="/aboutus" onClick={closeMenu}>
+                <h2>About us</h2>
+              </Link>
+              <Link to="/contactus" onClick={closeMenu}>
+                <h2>Contact us</h2>
+              </Link>
+              <button
+                className="login-btn login-nav"
+                onClick={() => {
+                  closeMenu();
+                  history.push("/");
+                  sessionStorage.clear();
+                  localStorage.clear();
+                  Toast.success("User Logged out successfully");
+                }}
+              >
+                Logout
+              </button>
+            </div>
+          )}
+
+          {isAddBlogPage && (
+            <div className="menus first-menu">
               <Link to="/dashboard" onClick={closeMenu}>
                 <h2>Dashboard</h2>
               </Link>
@@ -106,7 +165,8 @@ const Navbar = () => {
                   closeMenu();
                   history.push("/");
                   sessionStorage.clear();
-                  Toast.success("Logged out successfully");
+                  localStorage.clear();
+                  Toast.success("Admin Logged out successfully");
                 }}
               >
                 Logout
@@ -114,7 +174,7 @@ const Navbar = () => {
             </div>
           )}
           {isDashboardPage && (
-            <div className="menus second-menu">
+            <div className="menus first-menu">
               <Link to="/dashboard" onClick={closeMenu}>
                 <h2>Dashboard</h2>
               </Link>
@@ -127,7 +187,30 @@ const Navbar = () => {
                   closeMenu();
                   history.push("/");
                   sessionStorage.clear();
-                  Toast.success("Logged out successfully");
+                  localStorage.clear();
+                  Toast.success("Admin Logged out successfully");
+                }}
+              >
+                Logout
+              </button>
+            </div>
+          )}
+          {isUpdate && (
+            <div className="menus first-menu">
+              <Link to="/dashboard" onClick={closeMenu}>
+                <h2>Dashboard</h2>
+              </Link>
+              <Link to="/addblog" onClick={closeMenu}>
+                <h2>Add blog</h2>
+              </Link>
+              <button
+                className="login-btn login-nav"
+                onClick={() => {
+                  closeMenu();
+                  history.push("/");
+                  localStorage.clear();
+                  sessionStorage.clear();
+                  Toast.success("Admin Logged out successfully");
                 }}
               >
                 Logout
