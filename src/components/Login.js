@@ -15,6 +15,8 @@ const Login = ({ setOpenModal, setIsLoginClicked }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isPending, setIspending] = useState(false);
+  const [profile, setProfile] = useState(null);
+  // console.log(profile);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -41,6 +43,7 @@ const Login = ({ setOpenModal, setIsLoginClicked }) => {
         if (response.ok) {
           const responseData = await response.json();
           console.log(responseData.data.fname);
+          // TODO: to set image in the localstorage and retrieve them in singlepost
           localStorage.setItem("username", responseData.data.firstname);
           // Assuming the response includes a token, you can save it to a secure location, such as localStorage.
           localStorage.setItem("token", responseData.token);
@@ -86,12 +89,21 @@ const Login = ({ setOpenModal, setIsLoginClicked }) => {
     e.preventDefault();
     if (validate()) {
       // Create a data object with the user's email and password
-      const data = {
-        firstname,
-        lastname,
-        email,
-        password,
-      };
+      // const data = {
+      //   // profile,
+      //   firstname,
+      //   lastname,
+      //   email,
+      //   password,
+      // };
+      const formData = new FormData();
+
+      // Append your form fields to the FormData object
+      formData.append("firstname", firstname);
+      formData.append("lastname", lastname);
+      formData.append("email", email);
+      formData.append("password", password);
+      formData.append("profile", profile); // Append the image
 
       try {
         setIspending(true);
@@ -99,10 +111,11 @@ const Login = ({ setOpenModal, setIsLoginClicked }) => {
           "https://lastlast.onrender.com/api/users/signUp/",
           {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
+            // headers: {
+            //   "Content-Type": "application/json",
+            // },
+            // body: JSON.stringify(data),
+            body: formData,
           }
         );
 
@@ -115,6 +128,9 @@ const Login = ({ setOpenModal, setIsLoginClicked }) => {
           setEmail("");
           setPassword("");
           Toast.success("User added successful");
+          setRegisterActive(false);
+          setForgotActive(false);
+          setLoginActive(true);
         } else {
           // Handle login failure, e.g., display an error message to the user.
           setFirstname("");
@@ -128,6 +144,7 @@ const Login = ({ setOpenModal, setIsLoginClicked }) => {
       } catch (error) {
         // Handle network errors or other exceptions.
         console.error("An error occurred:", error);
+        Toast.error("An error occurred:", error);
       }
     }
   };
@@ -252,6 +269,17 @@ const Login = ({ setOpenModal, setIsLoginClicked }) => {
                         Login
                       </button>
                     </span>
+                  </div>
+                  <div className="login-username">
+                    <input
+                      type="file"
+                      required
+                      placeholder="Insert image..."
+                      // value={image}
+                      // onChange={(e) => setImage(e.target.value)}
+                      onChange={(e) => setProfile(e.target.files[0])}
+                      className="file"
+                    />
                   </div>
                   <div className="login-username">
                     <input
