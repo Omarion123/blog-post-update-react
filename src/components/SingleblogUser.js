@@ -177,6 +177,7 @@ const Singleblog = () => {
             .map((comment, index) => (
               <div key={index} className="first-comments">
                 <div className="side-one">
+                  {/* TODO: to make this profile visible but the problem is for backend */}
                   <img src={comment.user.profile} alt="avatar" />
                 </div>
                 <div className="side-two">
