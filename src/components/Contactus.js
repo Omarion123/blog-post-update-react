@@ -10,11 +10,11 @@ const Contactus = () => {
           <h3>Contact us</h3>
         </div>
         <form>
-          <div className="contact-email">
+          <div className="image-select">
             <AiOutlineMail className="contact-email-icon" />
             <input type="email" placeholder="Enter email here..." required />
           </div>
-          <div className="contact-message">
+          <div className="image-select">
             <AiFillMessage className="contact-message-icon" />
             <input type="text" required placeholder="Enter message here..." />
           </div>

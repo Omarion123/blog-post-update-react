@@ -617,7 +617,7 @@ input:focus {
   align-items: center;
   border-radius: 12px;
 }
-.contact-email .contact-email-icon {
+.image-select .contact-email-icon {
   width: 30px;
   height: 30px;
 }
@@ -1248,6 +1248,10 @@ input:focus {
   justify-content: center;
   align-items: center;
 }
+.addbtn button {
+  border: none;
+  outline: none;
+}
 .add-blog-button {
   background-color: var(--primary-color);
   width: 15rem;
@@ -1320,6 +1324,9 @@ input:focus {
 .wysiwyg {
   width: 80%;
   margin: 1rem auto 0;
+}
+.jodit-status-bar-link {
+  display: none;
 }
 /* Media queries */
 @media screen and (min-width: 1100px) {
