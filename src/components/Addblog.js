@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
-import { ImAttachment } from "react-icons/im";
+import { BsCardImage } from "react-icons/bs";
 import { MdSubtitles } from "react-icons/md";
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import { FaHeading } from "react-icons/fa";
@@ -9,6 +9,7 @@ import { IoIosAdd } from "react-icons/io";
 import toast from "react-hot-toast";
 import JoditEditor from "jodit-react";
 import HTMLReactParser from "html-react-parser";
+import { Animated } from "react-animated-css";
 
 import { useHistory } from "react-router-dom";
 
@@ -113,7 +114,13 @@ const Addblog = () => {
         <h2>Add blog here!</h2>
         <div className="addblog-container">
           <div className="image-select">
-            <ImAttachment className="icon" />
+            <Animated
+              animationIn="shake"
+              animationOut="fadeOut"
+              isVisible={true}
+            >
+              <BsCardImage className="icon" />
+            </Animated>
             <input
               type="file"
               required
@@ -125,7 +132,13 @@ const Addblog = () => {
             />
           </div>
           <div className="image-select">
-            <BiSolidCategoryAlt className="icon" />
+            <Animated
+              animationIn="shake"
+              animationOut="fadeOut"
+              isVisible={true}
+            >
+              <BiSolidCategoryAlt className="icon" />
+            </Animated>
             <input
               type="text"
               required
@@ -144,7 +157,13 @@ const Addblog = () => {
             />
           </div> */}
           <div className="image-select">
-            <MdSubtitles className="icon" />
+            <Animated
+              animationIn="shake"
+              animationOut="fadeOut"
+              isVisible={true}
+            >
+              <MdSubtitles className="icon" />
+            </Animated>
             <input
               type="text"
               required
@@ -154,7 +173,13 @@ const Addblog = () => {
             />
           </div>
           <div className="image-select">
-            <FaHeading className="icon" />
+            <Animated
+              animationIn="shake"
+              animationOut="fadeOut"
+              isVisible={true}
+            >
+              <FaHeading className="icon" />
+            </Animated>
             <input
               type="text"
               required
