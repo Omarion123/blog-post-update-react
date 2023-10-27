@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { ImAttachment } from "react-icons/im";
+import React, { useEffect, useState, useRef, useMemo } from "react";
+import { BsCardImage } from "react-icons/bs";
 import { MdSubtitles } from "react-icons/md";
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import { FaHeading } from "react-icons/fa";
@@ -7,11 +7,16 @@ import { CgDetailsMore } from "react-icons/cg";
 import { BsPersonBadgeFill } from "react-icons/bs";
 import { IoIosAdd } from "react-icons/io";
 import toast from "react-hot-toast";
+import JoditEditor from "jodit-react";
+import HTMLReactParser from "html-react-parser";
+import { Animated } from "react-animated-css";
 
 import { useHistory } from "react-router-dom";
 
 const Addblog = () => {
   const history = useHistory();
+  const editor = useRef(null);
+  // const [content, setContent] = useState("");
 
   useEffect(() => {
     let email = sessionStorage.getItem("email");
@@ -31,6 +36,7 @@ const Addblog = () => {
   const [title, setTitle] = useState("");
   const [heading, setHeading] = useState("");
   const [description, setDescription] = useState("");
+  console.log(description);
   const [ispending, setIspending] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -99,14 +105,22 @@ const Addblog = () => {
       toast.error("Token not found in localStorage. Please log in.");
     }
   };
-
+  // const config = {
+  //   placeholder: "Enter description here...",
+  // };
   return (
     <div className="addblog">
       <form onSubmit={handleSubmit}>
         <h2>Add blog here!</h2>
         <div className="addblog-container">
           <div className="image-select">
-            <ImAttachment className="icon" />
+            <Animated
+              animationIn="shake"
+              animationOut="fadeOut"
+              isVisible={true}
+            >
+              <BsCardImage className="icon" />
+            </Animated>
             <input
               type="file"
               required
@@ -118,7 +132,13 @@ const Addblog = () => {
             />
           </div>
           <div className="image-select">
-            <BiSolidCategoryAlt className="icon" />
+            <Animated
+              animationIn="shake"
+              animationOut="fadeOut"
+              isVisible={true}
+            >
+              <BiSolidCategoryAlt className="icon" />
+            </Animated>
             <input
               type="text"
               required
@@ -137,7 +157,13 @@ const Addblog = () => {
             />
           </div> */}
           <div className="image-select">
-            <MdSubtitles className="icon" />
+            <Animated
+              animationIn="shake"
+              animationOut="fadeOut"
+              isVisible={true}
+            >
+              <MdSubtitles className="icon" />
+            </Animated>
             <input
               type="text"
               required
@@ -147,7 +173,13 @@ const Addblog = () => {
             />
           </div>
           <div className="image-select">
-            <FaHeading className="icon" />
+            <Animated
+              animationIn="shake"
+              animationOut="fadeOut"
+              isVisible={true}
+            >
+              <FaHeading className="icon" />
+            </Animated>
             <input
               type="text"
               required
@@ -156,9 +188,8 @@ const Addblog = () => {
               onChange={(e) => setHeading(e.target.value)}
             />
           </div>
-          <div className="image-select">
+          {/* <div className="image-select">
             <CgDetailsMore className="icon" />
-            {/* <input type="text-area" placeholder="Enter content..." /> */}
             <textarea
               rows="4"
               required
@@ -166,7 +197,16 @@ const Addblog = () => {
               placeholder="Enter description..."
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
+          </div> */}
+          <div className="wysiwyg">
+            <JoditEditor
+              // config={config}
+              ref={editor}
+              value={description}
+              onChange={(newContent) => setDescription(newContent)}
+            />
           </div>
+          {/* <h1>{HTMLReactParser(description)}</h1> */}
           <div className="addbtn">
             {!ispending && (
               <button>

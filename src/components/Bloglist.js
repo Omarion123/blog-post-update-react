@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import HTMLReactParser from "html-react-parser";
 const Bloglist = ({ blogs }) => {
   return (
     <>
@@ -8,16 +9,19 @@ const Bloglist = ({ blogs }) => {
             <img src={blog.image} alt="image" />
             <div className="category-date">
               <div className="category">{blog.category}</div>
-              {/* <div className="date">{blog.createdAt}</div> */}
               <div className="date">{blog.createdAt.substring(0, 10)}</div>
             </div>
-            <div className="author">{blog.author[0].fname}</div>
+            <div className="author">
+              {blog.author.firstname.charAt(0).toUpperCase() +
+                blog.author.firstname.slice(1)}
+            </div>
             <div className="title">{blog.title}</div>
             <div className="card-content">
               <p>
-                {blog && blog.description
-                  ? blog.description.substring(0, 100)
-                  : ""}
+                {blog &&
+                  HTMLReactParser(
+                    blog.description ? blog.description.substring(0, 80) : ""
+                  )}
                 ...
               </p>
             </div>

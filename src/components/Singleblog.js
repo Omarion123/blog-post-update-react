@@ -5,6 +5,7 @@ import useFetch from "./useFetch";
 import toast from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useEffect } from "react";
+import HTMLReactParser from "html-react-parser";
 
 const Singleblog = () => {
   const [loading, setLoading] = useState(true);
@@ -105,7 +106,11 @@ const Singleblog = () => {
               <div className="single-description">
                 <div className="author-category-date">
                   <div className="author-single">
-                    Author: <span>{blog.author[0].fname}</span>
+                    Author:{" "}
+                    <span>
+                      {blog.author.firstname.charAt(0).toUpperCase() +
+                        blog.author.firstname.slice(1)}
+                    </span>
                   </div>
                   <div className="category-single">
                     Category: <span>{blog.category}</span>
@@ -115,8 +120,16 @@ const Singleblog = () => {
                   </div>
                 </div>
                 <div className="description">
-                  <p>{blog.content}</p>
+                  {HTMLReactParser(blog.description)}
                 </div>
+                {/* <div className="description">
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Architecto quia accusamus sapiente consequatur tenetur dolor
+                    odio magnam illum id? Dolores culpa distinctio obcaecati
+                    excepturi expedita illum assumenda eligendi earum alias?
+                  </p>
+                </div> */}
               </div>
             </>
           )}
@@ -156,7 +169,7 @@ const Singleblog = () => {
                 </div>
                 <div className="side-two">
                   <div className="username-comment">
-                    Name: <span>{comment.user.fname}</span>
+                    Name: <span>{comment.user.firstname}</span>
                   </div>
                   <div className="username-comment">
                     Commented: <span>{comment.commentBody}</span>
