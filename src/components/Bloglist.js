@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import HTMLReactParser from "html-react-parser";
 const Bloglist = ({ blogs }) => {
   return (
     <>
@@ -17,9 +18,10 @@ const Bloglist = ({ blogs }) => {
             <div className="title">{blog.title}</div>
             <div className="card-content">
               <p>
-                {blog && blog.description
-                  ? blog.description.substring(0, 90)
-                  : ""}
+                {blog &&
+                  HTMLReactParser(
+                    blog.description ? blog.description.substring(0, 100) : ""
+                  )}
                 ...
               </p>
             </div>

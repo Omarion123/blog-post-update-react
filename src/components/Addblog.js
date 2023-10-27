@@ -15,7 +15,7 @@ import { useHistory } from "react-router-dom";
 const Addblog = () => {
   const history = useHistory();
   const editor = useRef(null);
-  const [content, setContent] = useState("");
+  // const [content, setContent] = useState("");
 
   useEffect(() => {
     let email = sessionStorage.getItem("email");
@@ -181,7 +181,7 @@ const Addblog = () => {
               onChange={(newContent) => setDescription(newContent)}
             />
           </div>
-          <h1>{HTMLReactParser(description)}</h1>
+          {/* <h1>{HTMLReactParser(description)}</h1> */}
           <div className="addbtn">
             {!ispending && (
               <button>
