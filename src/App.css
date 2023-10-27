@@ -1126,10 +1126,13 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 .items-image img {
-  width: 90%;
-  height: 90%;
+  width: 75%;
+  height: 75%;
+  background-position: center;
+  background-size: cover;
 }
 
 .items-description {
@@ -1549,6 +1552,7 @@ input:focus {
     grid-template-columns: 1fr; /* Use a single column for smaller screens */
     grid-template-areas:
       "title"
+      "image"
       "description"
       "action";
     height: auto; /* Let the height adjust based on content */
