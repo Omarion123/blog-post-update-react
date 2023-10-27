@@ -126,7 +126,10 @@ const Singleblog = () => {
                 Category: <span>{blogData.category}</span>
               </div>
               <div className="date-single">
-                Date: <span>October 9, 2023</span>
+                Date: <span>{blogData.createdAt.substring(0, 10)}</span>
+              </div>
+              <div className="date-single">
+                Views: <span>{blogData.views}</span>
               </div>
             </div>
             <div className="description">

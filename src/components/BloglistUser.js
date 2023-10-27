@@ -10,6 +10,7 @@ const Bloglist = ({ blogs }) => {
             <img src={blog.image} alt="image" />
             <div className="category-date">
               <div className="category">{blog.category}</div>
+              <div className="views">Views: {blog.views}</div>
               <div className="date">{blog.createdAt.substring(0, 10)}</div>
             </div>
             <div className="author">
