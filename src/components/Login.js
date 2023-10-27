@@ -45,6 +45,7 @@ const Login = ({ setOpenModal, setIsLoginClicked }) => {
           console.log(responseData.data.fname);
           // TODO: to set image in the localstorage and retrieve them in singlepost
           localStorage.setItem("username", responseData.data.firstname);
+          localStorage.setItem("profile", responseData.data.profile);
           // Assuming the response includes a token, you can save it to a secure location, such as localStorage.
           localStorage.setItem("token", responseData.token);
           localStorage.setItem("role", responseData.data.role);

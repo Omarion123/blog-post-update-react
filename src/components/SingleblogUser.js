@@ -41,6 +41,8 @@ const Singleblog = () => {
   console.log("POSTS", blogData);
   const [commenting, setCommenting] = useState("");
   let username = localStorage.getItem("username");
+  let profile = localStorage.getItem("profile");
+  console.log("profile is: ", profile);
   const handleSubmit = (e) => {
     e.preventDefault();
     setCommentingloader(true);
@@ -49,6 +51,7 @@ const Singleblog = () => {
     // Append your form fields to the FormData object
     formData.append("header", username);
     formData.append("commentBody", commenting);
+    formData.append("profile", profile);
 
     // setIspending(true);
 
@@ -174,7 +177,7 @@ const Singleblog = () => {
             .map((comment, index) => (
               <div key={index} className="first-comments">
                 <div className="side-one">
-                  <img src={Img1} alt="avatar" />
+                  <img src={comment.user.profile} alt="avatar" />
                 </div>
                 <div className="side-two">
                   <div className="username-comment">
