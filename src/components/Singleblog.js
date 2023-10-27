@@ -5,6 +5,7 @@ import useFetch from "./useFetch";
 import toast from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useEffect } from "react";
+import HTMLReactParser from "html-react-parser";
 
 const Singleblog = () => {
   const [loading, setLoading] = useState(true);
@@ -119,8 +120,16 @@ const Singleblog = () => {
                   </div>
                 </div>
                 <div className="description">
-                  <p>{blog.content}</p>
+                  {HTMLReactParser(blog.description)}
                 </div>
+                {/* <div className="description">
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Architecto quia accusamus sapiente consequatur tenetur dolor
+                    odio magnam illum id? Dolores culpa distinctio obcaecati
+                    excepturi expedita illum assumenda eligendi earum alias?
+                  </p>
+                </div> */}
               </div>
             </>
           )}

@@ -229,7 +229,7 @@ const Dashboard = () => {
                 <div className="items-description">
                   {blog &&
                     HTMLReactParser(
-                      blog.description ? blog.description.substring(0, 100) : ""
+                      blog.description ? blog.description.substring(0, 90) : ""
                     )}
                   ...
                 </div>

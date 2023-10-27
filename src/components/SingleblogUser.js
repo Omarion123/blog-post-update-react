@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Img1 from "./images/image1.jpeg";
 import ClipLoader from "react-spinners/ClipLoader";
 import SyncLoader from "react-spinners/ClipLoader";
+import HTMLReactParser from "html-react-parser";
 
 // import useFetch from "./useFetch";
 import toast from "react-hot-toast";
@@ -126,7 +127,7 @@ const Singleblog = () => {
               </div>
             </div>
             <div className="description">
-              <p>{blogData.content}</p>
+              {HTMLReactParser(blogData.description)}
             </div>
           </div>
         </>

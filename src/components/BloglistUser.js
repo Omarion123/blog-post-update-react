@@ -21,7 +21,7 @@ const Bloglist = ({ blogs }) => {
               <p>
                 {blog &&
                   HTMLReactParser(
-                    blog.description ? blog.description.substring(0, 100) : ""
+                    blog.description ? blog.description.substring(0, 80) : ""
                   )}
                 ...
               </p>
