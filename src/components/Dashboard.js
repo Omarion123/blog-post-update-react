@@ -224,7 +224,8 @@ const Dashboard = () => {
               <div className="items1" key={blog._id}>
                 {/* <Link to={`/blogs/${blog.id}`}> */}
                 <div className="items-title">
-                  <p>{blog.title}</p>
+                  {/* <p>{blog.title}</p> */}
+                  <p>{blog.title ? blog.title.substring(0, 15) : ""}...</p>
                 </div>
                 <div className="items-description">
                   {blog &&
