@@ -227,6 +227,9 @@ const Dashboard = () => {
                   {/* <p>{blog.title}</p> */}
                   <p>{blog.title ? blog.title.substring(0, 15) : ""}...</p>
                 </div>
+                <div className="items-image">
+                  <img src={blog.image} />
+                </div>
                 <div className="items-description">
                   {blog &&
                     HTMLReactParser(

@@ -1106,11 +1106,11 @@ input:focus {
   background-color: var(--card-date-color);
   color: var(--text-color-black);
   width: 100%;
-  height: 4rem;
+  height: 6rem;
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 20fr 60fr 20fr;
-  grid-template-areas: "title description action";
+  grid-template-columns: 15fr 15fr 50fr 20fr;
+  grid-template-areas: "title image description action";
   justify-content: space-around;
   align-items: center;
   justify-items: center;
@@ -1120,6 +1120,16 @@ input:focus {
 
 .items-title {
   grid-area: title;
+}
+.items-image {
+  grid-area: image;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.items-image img {
+  width: 90%;
+  height: 90%;
 }
 
 .items-description {
