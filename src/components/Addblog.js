@@ -181,6 +181,7 @@ const Addblog = () => {
               onChange={(newContent) => setDescription(newContent)}
             />
           </div>
+          <h1>{HTMLReactParser(description)}</h1>
           <div className="addbtn">
             {!ispending && (
               <button>

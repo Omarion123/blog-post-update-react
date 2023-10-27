@@ -12,6 +12,7 @@ import { Animated } from "react-animated-css";
 import { useHistory } from "react-router-dom";
 import toast from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
+import HTMLReactParser from "html-react-parser";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);
@@ -226,9 +227,10 @@ const Dashboard = () => {
                   <p>{blog.title}</p>
                 </div>
                 <div className="items-description">
-                  {blog && blog.description
-                    ? blog.description.substring(0, 100)
-                    : ""}
+                  {blog &&
+                    HTMLReactParser(
+                      blog.description ? blog.description.substring(0, 100) : ""
+                    )}
                   ...
                 </div>
                 <div className="items-action">
