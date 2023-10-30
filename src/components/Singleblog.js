@@ -168,7 +168,8 @@ const Singleblog = () => {
             .map((comment, index) => (
               <div key={index} className="first-comments">
                 <div className="side-one">
-                  <img src={Img1} alt="avatar" />
+                  {/* <img src={Img1} alt="avatar" /> */}
+                  <img src={comment.user.profile} alt="avatar" />
                 </div>
                 <div className="side-two">
                   <div className="username-comment">
