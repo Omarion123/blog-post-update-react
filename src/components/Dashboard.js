@@ -3,6 +3,7 @@ import { BsPostcardHeart } from "react-icons/bs";
 import { BiCategoryAlt } from "react-icons/bi";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { MdAddCircleOutline } from "react-icons/md";
+import { AiOutlineAreaChart } from "react-icons/ai";
 import { AiFillEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -13,8 +14,21 @@ import { useHistory } from "react-router-dom";
 import toast from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
 import HTMLReactParser from "html-react-parser";
+import BarChart from "./BarChart";
 
 const Dashboard = () => {
+  // const labelValues = userData.map((data) => data.year);
+  // const dataValues = userData.map((data) => data.userGain);
+
+  // const [userData, setUserData] = useState({
+  //   labels: labelValues,
+  //   datasets: [
+  //     {
+  //       label: "users gained",
+  //       data: dataValues,
+  //     },
+  //   ],
+  // });
   const [loading, setLoading] = useState(false);
   const [postIdToDelete, setPostIdToDelete] = useState(null);
   // const [ispendingDelete, setLoading] = useState(false);
@@ -170,6 +184,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
+      {/* <BarChart /> */}
       <h3 className="dash-head">Dashboard</h3>
       <div className="dashboard-grids">
         <div className="grid1">
@@ -203,11 +218,19 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="add-blog">
-        <Link to="/addblog">
-          <h2>Add item</h2>
-          <MdAddCircleOutline className="icon" />
-        </Link>
+      <div className="add-and-viewchart">
+        <div className="add-blog">
+          <Link to="/addblog">
+            <h2>Add item</h2>
+            <MdAddCircleOutline className="icon" />
+          </Link>
+        </div>
+        <div className="add-blog">
+          <Link to="/dashboard-chart">
+            <h2>View Charts</h2>
+            <AiOutlineAreaChart className="icon" />
+          </Link>
+        </div>
       </div>
       <div className="dashboard-items">
         <div className="dashboard-items-header">
