@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import LineCharts from "./charts/Linechart";
 import BarCharts from "./charts/BarCharts";
 import PieCharts from "./charts/PieCharts";
@@ -15,6 +15,68 @@ const DashboardChart = () => {
       history.push("/");
     }
   }, []);
+  const url = "https://lastlast.onrender.com/api/post/adminPosts";
+  const urlUser = "https://lastlast.onrender.com/api/users/getAllUsers/";
+  const [isPending, setIspending] = useState(true);
+  const [error, setError] = useState(null);
+  const [blogs, setBlogs] = useState([]);
+  console.log("blogs might be: ", blogs.length); //here
+  const [users, setUsers] = useState([]);
+  console.log("users might be here: ", users.length); //here
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Include your authorization header
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Could not fetch the resources, check the endpoints");
+      }
+
+      const responseData = await response.json();
+      setBlogs(responseData.data); // Update the 'blogs' state
+      console.log(responseData.data);
+      setIspending(false);
+      setError(null);
+    } catch (err) {
+      setIspending(false);
+      setError(err.message);
+    }
+  };
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch(urlUser, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Include your authorization header
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Could not fetch the resources, check the endpoints");
+      }
+
+      const responseData = await response.json();
+      // console.log("Users are:", responseData.data);
+      setUsers(responseData.data);
+      setIspending(false);
+      setError(null);
+    } catch (err) {
+      setIspending(false);
+      setError(err.message);
+    }
+  };
+
+  const uniqueCategories = blogs
+    ? Array.from(new Set(blogs.map((blog) => blog.category))).length
+    : 0;
+  useEffect(() => {
+    fetchData();
+    fetchUserData();
+  }, []); // Empty dependency array to run only once on component mount
   return (
     <div className="chart-container">
       <div className="first-chart">
@@ -22,7 +84,11 @@ const DashboardChart = () => {
         <PieCharts />
       </div>
       <div className="second-chart">
-        <BarCharts />
+        <BarCharts
+          uniqueCategories={uniqueCategories}
+          blogLength={blogs.length}
+          usersLength={users.length}
+        />
       </div>
     </div>
   );
