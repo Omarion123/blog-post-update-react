@@ -30,6 +30,7 @@ const Dashboard = () => {
   // -------------------------------------------------------------------
   // const url = "https://lastlast.onrender.com/api/post/posts";
   const url = "https://lastlast.onrender.com/api/post/adminPosts";
+  const urlUser = "https://lastlast.onrender.com/api/users/getAllUsers/";
   // const { data: blogs, isPending, error } = useFetch(url);
   // -------------------------------------------------------------------
   // ----------------------
@@ -61,6 +62,8 @@ const Dashboard = () => {
   // --------------------------------
 
   const [blogs, setBlogs] = useState([]);
+  const [users, setUsers] = useState([]);
+  console.log("Users might be: ", users);
   const [isPending, setIspending] = useState(true);
   const [error, setError] = useState(null);
 
@@ -88,9 +91,33 @@ const Dashboard = () => {
       setError(err.message);
     }
   };
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch(urlUser, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Include your authorization header
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Could not fetch the resources, check the endpoints");
+      }
+
+      const responseData = await response.json();
+      // console.log("Users are:", responseData.data);
+      setUsers(responseData.data);
+      setIspending(false);
+      setError(null);
+    } catch (err) {
+      setIspending(false);
+      setError(err.message);
+    }
+  };
 
   useEffect(() => {
-    fetchData(); // Fetch data immediately
+    fetchData();
+    fetchUserData();
   }, []); // Empty dependency array to run only once on component mount
   // -------------------------------------------------------------------
   const uniqueCategories = blogs
@@ -168,7 +195,8 @@ const Dashboard = () => {
         <div className="grid1">
           <div className="left-side">
             <h3>Users</h3>
-            <h1>6</h1>
+            {/* <h1>6</h1> */}
+            <h1>{users.length}</h1>
           </div>
           <div className="right-side">
             <AiOutlineUsergroupAdd className="icon" />
