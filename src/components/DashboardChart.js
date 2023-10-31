@@ -17,12 +17,13 @@ const DashboardChart = () => {
   }, []);
   const url = "https://lastlast.onrender.com/api/post/adminPosts";
   const urlUser = "https://lastlast.onrender.com/api/users/getAllUsers/";
+  const urlComments = "https://lastlast.onrender.com/api/commenting/comments/";
   const [isPending, setIspending] = useState(true);
   const [error, setError] = useState(null);
   const [blogs, setBlogs] = useState([]);
-  console.log("blogs might be: ", blogs.length); //here
   const [users, setUsers] = useState([]);
-  console.log("users might be here: ", users.length); //here
+  const [comments, setComments] = useState([]);
+  console.log("Comments are: ", comments);
   const fetchData = async () => {
     try {
       const response = await fetch(url, {
@@ -38,7 +39,28 @@ const DashboardChart = () => {
 
       const responseData = await response.json();
       setBlogs(responseData.data); // Update the 'blogs' state
-      console.log(responseData.data);
+      setIspending(false);
+      setError(null);
+    } catch (err) {
+      setIspending(false);
+      setError(err.message);
+    }
+  };
+  const fetchCommentData = async () => {
+    try {
+      const response = await fetch(urlComments, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Include your authorization header
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Could not fetch the resources, check the endpoints");
+      }
+
+      const responseData = await response.json();
+      setComments(responseData.data);
       setIspending(false);
       setError(null);
     } catch (err) {
@@ -60,7 +82,6 @@ const DashboardChart = () => {
       }
 
       const responseData = await response.json();
-      // console.log("Users are:", responseData.data);
       setUsers(responseData.data);
       setIspending(false);
       setError(null);
@@ -76,15 +97,22 @@ const DashboardChart = () => {
   useEffect(() => {
     fetchData();
     fetchUserData();
+    fetchCommentData();
   }, []); // Empty dependency array to run only once on component mount
   return (
     <div className="chart-container">
       <div className="first-chart">
-        <LineCharts />
+        <LineCharts
+          comments={comments.length}
+          uniqueCategories={uniqueCategories}
+          blogLength={blogs.length}
+          usersLength={users.length}
+        />
         <PieCharts />
       </div>
       <div className="second-chart">
         <BarCharts
+          comments={comments.length}
           uniqueCategories={uniqueCategories}
           blogLength={blogs.length}
           usersLength={users.length}
