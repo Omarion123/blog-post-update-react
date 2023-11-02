@@ -1227,6 +1227,7 @@ input:focus {
   align-items: center;
   border-radius: 10px;
   margin-top: 1rem;
+  padding-left: 1rem;
 }
 
 .image-select .icon {
@@ -1636,13 +1637,11 @@ input:focus {
   .update form {
     max-width: 400px;
   }
-  /* Charts */
-  /* .first-chart {
+  .view-chart-header {
+    font-size: 15px;
+  }
+  .add-and-viewchart {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
   }
-  .second-chart {
-    margin-top: 5rem;
-  } */
 }

@@ -21,9 +21,23 @@ const DashboardChart = () => {
   const [isPending, setIspending] = useState(true);
   const [error, setError] = useState(null);
   const [blogs, setBlogs] = useState([]);
+  const [sumOfViews, setSumOfViews] = useState(0);
   const [users, setUsers] = useState([]);
   const [comments, setComments] = useState([]);
-  console.log("Comments are: ", comments);
+  useEffect(() => {
+    // Calculate the sum of the blog views.
+    const calculateSumOfViews = () => {
+      let sum = 0;
+      for (const blog of blogs) {
+        sum += blog.views;
+      }
+      setSumOfViews(sum);
+    };
+
+    // Call the function to calculate the sum of the blog views whenever the `blogs` array changes.
+    calculateSumOfViews();
+  }, [blogs]);
+
   const fetchData = async () => {
     try {
       const response = await fetch(url, {
@@ -103,6 +117,7 @@ const DashboardChart = () => {
     <div className="chart-container">
       <div className="first-chart">
         <LineCharts
+          sumOfViews={sumOfViews}
           comments={comments.length}
           uniqueCategories={uniqueCategories}
           blogLength={blogs.length}
@@ -112,6 +127,7 @@ const DashboardChart = () => {
       </div>
       <div className="second-chart">
         <BarCharts
+          sumOfViews={sumOfViews}
           comments={comments.length}
           uniqueCategories={uniqueCategories}
           blogLength={blogs.length}

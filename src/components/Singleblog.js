@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useEffect } from "react";
 import HTMLReactParser from "html-react-parser";
+import { AiFillEye } from "react-icons/ai";
 
 const Singleblog = () => {
   const [loading, setLoading] = useState(true);
@@ -119,6 +120,7 @@ const Singleblog = () => {
                     Date: <span>{blog.createdAt.substring(0, 10)}</span>
                   </div>
                   <div className="date-single">
+                    <AiFillEye className="icon-view" />
                     Views: <span>{blog.views}</span>
                   </div>
                 </div>

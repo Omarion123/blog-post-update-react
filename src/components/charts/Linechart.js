@@ -14,7 +14,8 @@ export default class LineCharts extends PureComponent {
   static demoUrl = "https://codesandbox.io/s/simple-line-chart-kec3v";
 
   render() {
-    const { blogLength, usersLength, uniqueCategories, comments } = this.props;
+    const { blogLength, sumOfViews, usersLength, uniqueCategories, comments } =
+      this.props;
     const data = [
       {
         name: "Posts",
@@ -25,7 +26,7 @@ export default class LineCharts extends PureComponent {
       {
         name: "Views",
         // value: 80,
-        value: 23,
+        value: sumOfViews,
         // amt: 34,
       },
       {
@@ -67,11 +68,11 @@ export default class LineCharts extends PureComponent {
           <Legend />
           <Line
             type="monotone"
-            dataKey="pv"
+            // dataKey="pv"
             stroke="#8884d8"
             activeDot={{ r: 8 }}
           />
-          <Line type="monotone" dataKey="value" stroke="#82ca9d" />
+          <Line type="monotone" dataKey="value" stroke="#f79918" />
         </LineChart>
       </ResponsiveContainer>
     );

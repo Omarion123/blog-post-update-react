@@ -5,7 +5,8 @@ export default class PieCharts extends PureComponent {
   static demoUrl = "https://codesandbox.io/s/pie-chart-of-two-levels-gor24";
 
   render() {
-    const { blogLength, usersLength, uniqueCategories, comments } = this.props;
+    const { blogLength, sumOfViews, usersLength, uniqueCategories, comments } =
+      this.props;
 
     const data01 = [
       {
@@ -17,7 +18,7 @@ export default class PieCharts extends PureComponent {
       {
         name: "Views",
         // value: 80,
-        value: 23,
+        value: sumOfViews,
         // amt: 34,
       },
       {
@@ -70,7 +71,7 @@ export default class PieCharts extends PureComponent {
             cy="50%"
             innerRadius={70}
             outerRadius={90}
-            fill="#82ca9d"
+            fill="#f79918"
             label
           />
         </PieChart>

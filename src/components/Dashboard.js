@@ -227,7 +227,7 @@ const Dashboard = () => {
         </div>
         <div className="add-blog">
           <Link to="/dashboard-chart">
-            <h2>View Charts</h2>
+            <h2 className="view-chart-header">View Charts</h2>
             <AiOutlineAreaChart className="icon" />
           </Link>
         </div>

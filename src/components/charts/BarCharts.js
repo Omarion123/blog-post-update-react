@@ -14,7 +14,8 @@ export default class BarCharts extends PureComponent {
   static demoUrl = "https://codesandbox.io/s/bar-chart-has-no-padding-jphoc";
 
   render() {
-    const { blogLength, usersLength, uniqueCategories, comments } = this.props;
+    const { blogLength, sumOfViews, usersLength, uniqueCategories, comments } =
+      this.props;
     const data = [
       {
         name: "Posts",
@@ -25,7 +26,7 @@ export default class BarCharts extends PureComponent {
       {
         name: "Views",
         // value: 80,
-        value: 23,
+        value: sumOfViews,
         // amt: 34,
       },
       {
@@ -70,7 +71,11 @@ export default class BarCharts extends PureComponent {
           <Tooltip />
           <Legend />
           <CartesianGrid strokeDasharray="3 3" />
-          <Bar dataKey="value" fill="#8884d8" background={{ fill: "#eee" }} />
+          <Bar
+            dataKey="value"
+            fill="#8884d8"
+            background={{ fill: "#f79918" }}
+          />
         </BarChart>
       </ResponsiveContainer>
     );
