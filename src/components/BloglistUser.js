@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import HTMLReactParser from "html-react-parser";
+import { AiFillEye } from "react-icons/ai";
 
 const Bloglist = ({ blogs }) => {
   return (
@@ -10,6 +11,10 @@ const Bloglist = ({ blogs }) => {
             <img src={blog.image} alt="image" />
             <div className="category-date">
               <div className="category">{blog.category}</div>
+              <div className="views">
+                <AiFillEye className="icon-view" />
+                Views: {blog.views}
+              </div>
               <div className="date">{blog.createdAt.substring(0, 10)}</div>
             </div>
             <div className="author">

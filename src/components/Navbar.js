@@ -21,6 +21,7 @@ const Navbar = () => {
   const isDashboardPage = location.pathname === "/dashboard";
   const isAddBlogPage = location.pathname === "/addblog";
   const isHome = location.pathname === "/home";
+  const isDashboardChart = location.pathname === "/dashboard-chart";
   // const isUpdate = location.pathname === "/update/:_id";
   const isUpdate = location.pathname.startsWith("/update/");
   const isBloglistUser = location.pathname.startsWith("/blogsUser/");
@@ -77,6 +78,7 @@ const Navbar = () => {
           {/* {!isDashboardPage && !isAddBlogPage && !isUpdate && ( */}
           {!(
             isDashboardPage ||
+            isDashboardChart ||
             isAddBlogPage ||
             isUpdate ||
             isHome ||
@@ -137,6 +139,9 @@ const Navbar = () => {
               <Link to="/dashboard" onClick={closeMenu}>
                 <h2>Dashboard</h2>
               </Link>
+              <Link to="/dashboard-chart" onClick={closeMenu}>
+                <h2>Charts</h2>
+              </Link>
               <Link to="/addblog" onClick={closeMenu}>
                 <h2>Add blog</h2>
               </Link>
@@ -159,6 +164,34 @@ const Navbar = () => {
               <Link to="/dashboard" onClick={closeMenu}>
                 <h2>Dashboard</h2>
               </Link>
+              <Link to="/dashboard-chart" onClick={closeMenu}>
+                <h2>Charts</h2>
+              </Link>
+              <Link to="/addblog" onClick={closeMenu}>
+                <h2>Add blog</h2>
+              </Link>
+              <button
+                className="login-btn login-nav"
+                onClick={() => {
+                  closeMenu();
+                  history.push("/");
+                  sessionStorage.clear();
+                  localStorage.clear();
+                  Toast.success("Admin Logged out successfully");
+                }}
+              >
+                Logout
+              </button>
+            </div>
+          )}
+          {isDashboardChart && (
+            <div className="menus first-menu">
+              <Link to="/dashboard" onClick={closeMenu}>
+                <h2>Dashboard</h2>
+              </Link>
+              <Link to="/dashboard-chart" onClick={closeMenu}>
+                <h2>Charts</h2>
+              </Link>
               <Link to="/addblog" onClick={closeMenu}>
                 <h2>Add blog</h2>
               </Link>
@@ -180,6 +213,9 @@ const Navbar = () => {
             <div className="menus first-menu">
               <Link to="/dashboard" onClick={closeMenu}>
                 <h2>Dashboard</h2>
+              </Link>
+              <Link to="/dashboard-chart" onClick={closeMenu}>
+                <h2>Charts</h2>
               </Link>
               <Link to="/addblog" onClick={closeMenu}>
                 <h2>Add blog</h2>

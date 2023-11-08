@@ -41,6 +41,8 @@ const Singleblog = () => {
   console.log("POSTS", blogData);
   const [commenting, setCommenting] = useState("");
   let username = localStorage.getItem("username");
+  let profile = localStorage.getItem("profile");
+  console.log("profile is: ", profile);
   const handleSubmit = (e) => {
     e.preventDefault();
     setCommentingloader(true);
@@ -49,6 +51,7 @@ const Singleblog = () => {
     // Append your form fields to the FormData object
     formData.append("header", username);
     formData.append("commentBody", commenting);
+    formData.append("profile", profile);
 
     // setIspending(true);
 
@@ -123,7 +126,10 @@ const Singleblog = () => {
                 Category: <span>{blogData.category}</span>
               </div>
               <div className="date-single">
-                Date: <span>October 9, 2023</span>
+                Date: <span>{blogData.createdAt.substring(0, 10)}</span>
+              </div>
+              <div className="date-single">
+                Views: <span>{blogData.views}</span>
               </div>
             </div>
             <div className="description">
@@ -174,7 +180,8 @@ const Singleblog = () => {
             .map((comment, index) => (
               <div key={index} className="first-comments">
                 <div className="side-one">
-                  <img src={Img1} alt="avatar" />
+                  {/* TODO: to make this profile visible but the problem is for backend */}
+                  <img src={comment.user.profile} alt="avatar" />
                 </div>
                 <div className="side-two">
                   <div className="username-comment">

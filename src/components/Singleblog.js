@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useEffect } from "react";
 import HTMLReactParser from "html-react-parser";
+import { AiFillEye } from "react-icons/ai";
 
 const Singleblog = () => {
   const [loading, setLoading] = useState(true);
@@ -116,7 +117,11 @@ const Singleblog = () => {
                     Category: <span>{blog.category}</span>
                   </div>
                   <div className="date-single">
-                    Date: <span>October 9, 2023</span>
+                    Date: <span>{blog.createdAt.substring(0, 10)}</span>
+                  </div>
+                  <div className="date-single">
+                    <AiFillEye className="icon-view" />
+                    Views: <span>{blog.views}</span>
                   </div>
                 </div>
                 <div className="description">
@@ -165,7 +170,8 @@ const Singleblog = () => {
             .map((comment, index) => (
               <div key={index} className="first-comments">
                 <div className="side-one">
-                  <img src={Img1} alt="avatar" />
+                  {/* <img src={Img1} alt="avatar" /> */}
+                  <img src={comment.user.profile} alt="avatar" />
                 </div>
                 <div className="side-two">
                   <div className="username-comment">

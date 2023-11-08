@@ -20,6 +20,7 @@ import { Toaster } from "react-hot-toast";
 import Update from "./components/Update";
 import SingleblogUser from "./components/SingleblogUser";
 import HomeUser from "./components/HomeUser";
+import DashboardChart from "./components/DashboardChart";
 
 function App() {
   return (
@@ -66,6 +67,9 @@ function App() {
                 </Route>
                 <Route path="/dashboard">
                   <Dashboard />
+                </Route>
+                <Route path="/dashboard-chart">
+                  <DashboardChart />
                 </Route>
                 <Route path="/addblog">
                   <Addblog />
